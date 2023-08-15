@@ -1,4 +1,6 @@
-package edu.java.dao.models.modelFilm;
+package edu.java.dao.models.modelOutil;
+
+import java.sql.Date;
 
 public class Outil {
 
@@ -23,7 +25,7 @@ public class Outil {
     private String couleur_patref_ral; // gerer couleur
     private String retouche_sigmoidales;
     private String retouches_cote_fine;
-    private String date_decouverte; // gerer date // add Date class
+    private Date date_decouverte;  // gerer date // add Date class
     private String info_secondaire;
     private String zone_ramassage;
     private String remarquable;
@@ -198,11 +200,11 @@ public class Outil {
         this.retouches_cote_fine = retouches_cote_fine;
     }
 
-    public String getDate_decouverte() {
+    public Date getDate_decouverte() {
         return date_decouverte;
     }
 
-    public void setDate_decouverte(String date_decouverte) {
+    public void setDate_decouverte(Date date_decouverte) {
         this.date_decouverte = date_decouverte;
     }
 

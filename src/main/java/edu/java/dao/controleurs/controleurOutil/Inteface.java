@@ -1,4 +1,4 @@
-package edu.java.dao.controleurs.controleurFilm;
+package edu.java.dao.controleurs.controleurOutil;
 
 public class Inteface {
 

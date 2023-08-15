@@ -1,6 +1,6 @@
-package edu.java.dao.models.modelFilm;
+package edu.java.dao.models.modelOutil;
 
-import edu.java.dao.controleurs.controleurFilm.List;
+import java.util.List;
 
 public interface IOutilDao {
     // Pour le CRUD - Create Read Update Delete
@@ -11,7 +11,7 @@ public interface IOutilDao {
     // Read
     public List<Outil> MdlO_GetAll();
 
-    public Outil MdlO_GetById(double idref);
+    public Outil MdlO_GetById(int idref);
 
     public Outil MdlO_GetByNom_ou_Matiere(String nom_matiere);
 

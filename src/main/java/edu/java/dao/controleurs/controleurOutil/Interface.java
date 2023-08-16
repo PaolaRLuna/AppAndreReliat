@@ -58,8 +58,7 @@ public class Interface extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        //// controleurOutil = ControleurOutil.getControleurOutil(); // Initialisez le
-        //// contrôleur
+        //// controleurOutil = ControleurOutil.getControleurOutil(); // Initialisez le contrôleur
 
         JButton btnNewButton = new JButton("Outil");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));

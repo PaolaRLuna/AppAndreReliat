@@ -58,7 +58,8 @@ public class Interface extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        //// controleurOutil = ControleurOutil.getControleurOutil(); // Initialisez le contrôleur
+        //// controleurOutil = ControleurOutil.getControleurOutil(); // Initialisez le
+        //// contrôleur
 
         JButton btnNewButton = new JButton("Outil");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -97,3 +98,8 @@ public class Interface extends JFrame {
 
     }
 }
+
+// faire appels a toutes les metodes deja mis em place
+// consulter la base de donnee pour bien l'exploiter avec des boutons ajout ,
+// modifier et supprimer en se basant sur id
+// ajouter un champ pour rechercher dans celle d apres

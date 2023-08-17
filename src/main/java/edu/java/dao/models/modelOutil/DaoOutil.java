@@ -115,7 +115,7 @@ public class DaoOutil implements IOutilDao {
 
             while (rs.next()) { // on obtient la liste de tous les Outils et on va ligne par ligne
                 Outil outil = new Outil();
-                outil.setIdref(rs.getDouble("idref"));
+                outil.setIdref(rs.getInt("idref"));
                 outil.setAppellation(rs.getString("appelation"));
                 outil.setQualification_forme(rs.getString("qualification_forme"));
                 outil.setForme_typ(rs.getString("forme_typ"));
@@ -162,13 +162,13 @@ public class DaoOutil implements IOutilDao {
         try {
 
             stmt = conn.prepareStatement(GET_BY_ID);
-            stmt.setDouble(1, idref);
+            stmt.setInt(1, idref);
 
             ResultSet rs = stmt.executeQuery();
             Outil outil = new Outil();
             if (rs.next()) {
 
-                outil.setIdref(rs.getDouble("idref"));
+                outil.setIdref(rs.getInt("idref"));
                 outil.setAppellation(rs.getString("appelation"));
                 outil.setQualification_forme(rs.getString("qualification_forme"));
                 outil.setForme_typ(rs.getString("forme_typ"));
@@ -220,7 +220,7 @@ public class DaoOutil implements IOutilDao {
 
             if (rs.next()) {
                 Outil outil = new Outil();
-                outil.setIdref(rs.getDouble("idref"));
+                outil.setIdref(rs.getInt("idref"));
                 outil.setAppellation(rs.getString("appelation"));
                 outil.setQualification_forme(rs.getString("qualification_forme"));
                 outil.setForme_typ(rs.getString("forme_typ"));
@@ -272,7 +272,7 @@ public class DaoOutil implements IOutilDao {
 
             if (rs.next()) {
                 Outil outil = new Outil();
-                outil.setIdref(rs.getDouble("idref"));
+                outil.setIdref(rs.getInt("idref"));
                 outil.setAppellation(rs.getString("appelation"));
                 outil.setQualification_forme(rs.getString("qualification_forme"));
                 outil.setForme_typ(rs.getString("forme_typ"));
@@ -364,7 +364,7 @@ public class DaoOutil implements IOutilDao {
         int reponse = -1;
         try {
             stmt = conn.prepareStatement(SUPPRIMER);
-            stmt.setDouble(1, idref);
+            stmt.setInt(1, idref);
 
             reponse = stmt.executeUpdate();
         } catch (SQLException e) {

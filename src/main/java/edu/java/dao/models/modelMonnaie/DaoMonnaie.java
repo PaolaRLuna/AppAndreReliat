@@ -52,7 +52,7 @@ public class DaoMonnaie implements IMonnaieDao {
     }
 
     // Create
-    public String MdlO_Enregistrer(Monnaie piece) {
+    public String MdlM_Enregistrer(Monnaie piece) {
         PreparedStatement stmt = null;
         try { // requete est dans enregistrer, pour obtenir la clé qui a été generé on utilise
               // return_generated keys
@@ -91,7 +91,7 @@ public class DaoMonnaie implements IMonnaieDao {
 
     // Read
     // retourne une liste de Monnaies
-    public ArrayList<Monnaie> MdlO_GetAll() {
+    public ArrayList<Monnaie> MdlM_GetAll() {
         PreparedStatement stmt = null;
         List<Monnaie> listeMonnaies = new ArrayList<Monnaie>();
 
@@ -130,7 +130,7 @@ public class DaoMonnaie implements IMonnaieDao {
         return (ArrayList<Monnaie>) listeMonnaies;
     }
 
-    public Monnaie MdlO_GetById(int idref) {
+    public Monnaie MdlM_GetById(int idref) {
         PreparedStatement stmt = null;
 
         try {
@@ -171,7 +171,7 @@ public class DaoMonnaie implements IMonnaieDao {
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Monnaie MdlO_GetByMatiere(String nom_matiere) {
+    public Monnaie MdlM_GetByMatiere(String nom_matiere) {
         PreparedStatement stmt = null;
 
         try {
@@ -211,7 +211,7 @@ public class DaoMonnaie implements IMonnaieDao {
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Monnaie MdlO_GetByEmpereur(String zone) {
+    public Monnaie MdlM_GetByEmpereur(String zone) {
         PreparedStatement stmt = null;
 
         try {
@@ -253,7 +253,7 @@ public class DaoMonnaie implements IMonnaieDao {
     // Update, faudrat avant appeler MdlF_GetById(idf) pour obtenir
     // les données du Monnaie à modifier via une interface et après envoyer
     // ce Monnaie à MdlF_Modifier(Monnaie) pour faire la mise à jour.
-    public int MdlO_Modifier(Monnaie piece) {
+    public int MdlM_Modifier(Monnaie piece) {
         PreparedStatement stmt = null;
         int reponse = -1;
         try {
@@ -286,7 +286,7 @@ public class DaoMonnaie implements IMonnaieDao {
     }
 
     // Delete
-    public int MdlO_Supprimer(int idref) {
+    public int MdlM_Supprimer(int idref) {
         PreparedStatement stmt = null;
         int reponse = -1;
         try {

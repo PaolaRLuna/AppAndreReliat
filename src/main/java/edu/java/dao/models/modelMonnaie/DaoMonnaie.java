@@ -136,7 +136,7 @@ public class DaoMonnaie implements IMonnaieDao {
         try {
 
             stmt = conn.prepareStatement(GET_BY_ID);
-            stmt.setDouble(1, idref);
+            stmt.setInt(1, idref);
 
             ResultSet rs = stmt.executeQuery();
             Monnaie piece = new Monnaie();

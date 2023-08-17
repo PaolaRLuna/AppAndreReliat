@@ -4,22 +4,22 @@ import java.util.List;
 
 public interface ILivreDao {
     // Pour le CRUD - Create Read Update Delete
-    
+
     // Create
-    public String MdlO_Enregistrer(Livre lLivre);
-    
+    public String MdlL_Enregistrer(Livre leLivre);
+
     // Read
-    public List<Livre> MdlO_GetAll();
+    public List<Livre> MdlL_GetAll();
 
-    public Livre MdlO_GetById(int idref);
+    public Livre MdlL_GetById(int id);
 
-    public Livre MdlO_GetByNom_ou_Matiere(String nom_matiere);
+    public Livre MdlL_GetByTitre(String nom);
 
-    public Livre MdlO_GetByZone(String zone);
-    
+    public Livre MdlL_GetByAuteur(String auteur);
+
     // Update
-    public int MdlO_Modifier(Livre lLivre);
+    public int MdlL_Modifier(Livre leLivre);
 
     // Delete
-    public int MdlO_Supprimer(int idref);
+    public int MdlL_Supprimer(int id);
 }

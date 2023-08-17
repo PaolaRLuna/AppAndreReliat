@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Livre {
 
-    private double idref;
+    private int idref;
     private String appellation;
     private String qualification_forme;
     private String forme_typ;
@@ -29,14 +29,14 @@ public class Livre {
     private String info_secondaire;
     private String zone_ramassage;
     private String remarquable;
-    private double num_reference;
+    private int num_reference;
 
     // getters and setters
-    public double getIdref() {
+    public int getIdref() {
         return idref;
     }
 
-    public void setIdref(double idref) {
+    public void setIdref(int idref) {
         this.idref = idref;
     }
 
@@ -232,11 +232,11 @@ public class Livre {
         this.remarquable = remarquable;
     }
 
-    public double getNum_reference() {
+    public int getNum_reference() {
         return num_reference;
     }
 
-    public void setNum_reference(double num_reference) {
+    public void setNum_reference(int num_reference) {
         this.num_reference = num_reference;
     }
 

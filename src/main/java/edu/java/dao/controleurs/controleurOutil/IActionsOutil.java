@@ -12,9 +12,11 @@ public interface IActionsOutil {
     // // Read
     public ArrayList<Outil> CtrO_GetAllOutils();
 
-    public Outil CtrO_GetOutilById(int idf);
+    public Outil CtrO_GetOutilById(int idref);
 
-    public Outil CtrO_GetOutilByTitre(String titre);
+    public Outil CtrO_GetOutilByTitre_ou_Matiere(String titre_ou_matiere);
+
+    public Outil CtrO_GetOutilByZone(String zone);
 
     // // Update
     public int CtrO_Modifier(Outil outil);

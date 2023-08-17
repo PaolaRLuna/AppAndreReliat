@@ -24,9 +24,9 @@ public class ControleurMonnaie implements IActionsMonnaie{
             throw new RuntimeException(e);
         }
     }
-    public String CtrO_Enregistrer(Monnaie Monnaie) {
+    public String CtrM_Enregistrer(Monnaie piece) {
         String message = null;
-        message = Dao_Instance.MdlO_Enregistrer(Monnaie); // retourne un msg pour dire que le model a été bien enregistré
+        message = Dao_Instance.MdlO_Enregistrer(piece); // retourne un msg pour dire que le model a été bien enregistré
         return message;
     }
 

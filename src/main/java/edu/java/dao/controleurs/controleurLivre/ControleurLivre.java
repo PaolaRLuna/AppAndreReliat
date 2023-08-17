@@ -37,7 +37,7 @@ public class ControleurLivre implements IActionsLivre {
 
     public ArrayList<Livre> CtrL_GetAllLivres() {
         try {
-            return (ArrayList<Livre>) Dao_Instance.MdlO_GetAll();
+            return (ArrayList<Livre>) Dao_Instance.MdlL_GetAll();
         } catch (ClassCastException e) {
             return null;
         }
@@ -45,7 +45,7 @@ public class ControleurLivre implements IActionsLivre {
     }
 
     public Livre CtrL_GetLivreById(int idl) {
-        return Dao_Instance.MdlL_GetById(idl);
+        return Dao_Instance.MdlL_GetByNum(idl);
     };
 
     public Livre CtrL_GetLivreByTitre(String titre) {

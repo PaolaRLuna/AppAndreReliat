@@ -4,240 +4,202 @@ import java.sql.Date;
 
 public class Livre {
 
-    private int idref;
-    private String appellation;
-    private String qualification_forme;
-    private String forme_typ;
-    private String forme_atyp;
-    private String obs_aspect;
-    private String etat_conserv;
-    private String ro_naturel;
-    private String ro_amenage;
-    private String hauteur_reelemm;
-    private String hauteur_supposemm;
-    private String largeur_mm;
-    private String epaisseur_mm;
-    private String masse_gr;
-    private String matiere;
-    private String couleur_int;
-    private String intensite_pat;
-    private String ref_couleur_pat;
-    private String couleur_patref_ral; // gerer couleur
-    private String retouche_sigmoidales;
-    private String retouches_cote_fine;
-    private Date date_decouverte;  // gerer date // add Date class
-    private String info_secondaire;
-    private String zone_ramassage;
-    private String remarquable;
-    private int num_reference;
+    private int idl;
+    private int num;
+    private String titre;
+    private String sousTitre;
+    private String auteur;
+    private String editeur;
+    private String tome;
+    private String annee;
+    private String support;
+    private String rangement;
+    private String empereurs;
+    private String collection;
+    private String categorie;
 
     // getters and setters
-    public int getIdref() {
-        return idref;
+
+    /**
+     * @return int return the idl
+     */
+    public int getIdl() {
+        return idl;
     }
 
-    public void setIdref(int idref) {
-        this.idref = idref;
+    /**
+     * @param idl the idl to set
+     */
+    public void setIdl(int idl) {
+        this.idl = idl;
     }
 
-    public String getAppellation() {
-        return appellation;
+    /**
+     * @return int return the num
+     */
+    public int getNum() {
+        return num;
     }
 
-    public void setAppellation(String appellation) {
-        this.appellation = appellation;
+    /**
+     * @param num the num to set
+     */
+    public void setNum(int num) {
+        this.num = num;
     }
 
-    public String getQualification_forme() {
-        return qualification_forme;
+    /**
+     * @return String return the titre
+     */
+    public String getTitre() {
+        return titre;
     }
 
-    public void setQualification_forme(String qualification_forme) {
-        this.qualification_forme = qualification_forme;
+    /**
+     * @param titre the titre to set
+     */
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
-    public String getForme_typ() {
-        return forme_typ;
+    /**
+     * @return String return the soutTitre
+     */
+    public String getSousTitre() {
+        return sousTitre;
     }
 
-    public void setForme_typ(String forme_typ) {
-        this.forme_typ = forme_typ;
+    /**
+     * @param soutTitre the soutTitre to set
+     */
+    public void setSousTitre(String soutTitre) {
+        this.sousTitre = soutTitre;
     }
 
-    public String getForme_atyp() {
-        return forme_atyp;
+    /**
+     * @return String return the auteur
+     */
+    public String getAuteur() {
+        return auteur;
     }
 
-    public void setForme_atyp(String forme_atyp) {
-        this.forme_atyp = forme_atyp;
+    /**
+     * @param auteur the auteur to set
+     */
+    public void setAuteur(String auteur) {
+        this.auteur = auteur;
     }
 
-    public String getObs_aspect() {
-        return obs_aspect;
+    /**
+     * @return String return the editeur
+     */
+    public String getEditeur() {
+        return editeur;
     }
 
-    public void setObs_aspect(String obs_aspect) {
-        this.obs_aspect = obs_aspect;
+    /**
+     * @param editeur the editeur to set
+     */
+    public void setEditeur(String editeur) {
+        this.editeur = editeur;
     }
 
-    public String getEtat_conserv() {
-        return etat_conserv;
+    /**
+     * @return String return the tome
+     */
+    public String getTome() {
+        return tome;
     }
 
-    public void setEtat_conserv(String etat_conserv) {
-        this.etat_conserv = etat_conserv;
+    /**
+     * @param tome the tome to set
+     */
+    public void setTome(String tome) {
+        this.tome = tome;
     }
 
-    public String getRo_naturel() {
-        return ro_naturel;
+    /**
+     * @return String return the annee
+     */
+    public String getAnnee() {
+        return annee;
     }
 
-    public void setRo_naturel(String ro_naturel) {
-        this.ro_naturel = ro_naturel;
+    /**
+     * @param annee the annee to set
+     */
+    public void setAnnee(String annee) {
+        this.annee = annee;
     }
 
-    public String getRo_amenage() {
-        return ro_amenage;
+    /**
+     * @return String return the support
+     */
+    public String getSupport() {
+        return support;
     }
 
-    public void setRo_amenage(String ro_amenage) {
-        this.ro_amenage = ro_amenage;
+    /**
+     * @param support the support to set
+     */
+    public void setSupport(String support) {
+        this.support = support;
     }
 
-    public String getHauteur_reelemm() {
-        return hauteur_reelemm;
+    /**
+     * @return String return the rangement
+     */
+    public String getRangement() {
+        return rangement;
     }
 
-    public void setHauteur_reelemm(String hauteur_reelemm) {
-        this.hauteur_reelemm = hauteur_reelemm;
+    /**
+     * @param rangement the rangement to set
+     */
+    public void setRangement(String rangement) {
+        this.rangement = rangement;
     }
 
-    public String getHauteur_supposemm() {
-        return hauteur_supposemm;
+    /**
+     * @return String return the empereurs
+     */
+    public String getEmpereurs() {
+        return empereurs;
     }
 
-    public void setHauteur_supposemm(String hauteur_supposemm) {
-        this.hauteur_supposemm = hauteur_supposemm;
+    /**
+     * @param empereurs the empereurs to set
+     */
+    public void setEmpereurs(String empereurs) {
+        this.empereurs = empereurs;
     }
 
-    public String getLargeur_mm() {
-        return largeur_mm;
+    /**
+     * @return String return the collection
+     */
+    public String getCollection() {
+        return collection;
     }
 
-    public void setLargeur_mm(String largeur_mm) {
-        this.largeur_mm = largeur_mm;
+    /**
+     * @param collection the collection to set
+     */
+    public void setCollection(String collection) {
+        this.collection = collection;
     }
 
-    public String getEpaisseur_mm() {
-        return epaisseur_mm;
+    /**
+     * @return String return the categorie
+     */
+    public String getCategorie() {
+        return categorie;
     }
 
-    public void setEpaisseur_mm(String epaisseur_mm) {
-        this.epaisseur_mm = epaisseur_mm;
-    }
-
-    public String getMasse_gr() {
-        return masse_gr;
-    }
-
-    public void setMasse_gr(String masse_gr) {
-        this.masse_gr = masse_gr;
-    }
-
-    public String getMatiere() {
-        return matiere;
-    }
-
-    public void setMatiere(String matiere) {
-        this.matiere = matiere;
-    }
-
-    public String getCouleur_int() {
-        return couleur_int;
-    }
-
-    public void setCouleur_int(String couleur_int) {
-        this.couleur_int = couleur_int;
-    }
-
-    public String getIntensite_pat() {
-        return intensite_pat;
-    }
-
-    public void setIntensite_pat(String intensite_pat) {
-        this.intensite_pat = intensite_pat;
-    }
-
-    public String getRef_couleur_pat() {
-        return ref_couleur_pat;
-    }
-
-    public void setRef_couleur_pat(String ref_couleur_pat) {
-        this.ref_couleur_pat = ref_couleur_pat;
-    }
-
-    public String getCouleur_patref_ral() {
-        return couleur_patref_ral;
-    }
-
-    public void setCouleur_patref_ral(String couleur_patref_ral) {
-        this.couleur_patref_ral = couleur_patref_ral;
-    }
-
-    public String getRetouche_sigmoidales() {
-        return retouche_sigmoidales;
-    }
-
-    public void setRetouche_sigmoidales(String retouche_sigmoidales) {
-        this.retouche_sigmoidales = retouche_sigmoidales;
-    }
-
-    public String getRetouches_cote_fine() {
-        return retouches_cote_fine;
-    }
-
-    public void setRetouches_cote_fine(String retouches_cote_fine) {
-        this.retouches_cote_fine = retouches_cote_fine;
-    }
-
-    public Date getDate_decouverte() {
-        return date_decouverte;
-    }
-
-    public void setDate_decouverte(Date date_decouverte) {
-        this.date_decouverte = date_decouverte;
-    }
-
-    public String getInfo_secondaire() {
-        return info_secondaire;
-    }
-
-    public void setInfo_secondaire(String info_secondaire) {
-        this.info_secondaire = info_secondaire;
-    }
-
-    public String getZone_ramassage() {
-        return zone_ramassage;
-    }
-
-    public void setZone_ramassage(String zone_ramassage) {
-        this.zone_ramassage = zone_ramassage;
-    }
-
-    public String getRemarquable() {
-        return remarquable;
-    }
-
-    public void setRemarquable(String remarquable) {
-        this.remarquable = remarquable;
-    }
-
-    public int getNum_reference() {
-        return num_reference;
-    }
-
-    public void setNum_reference(int num_reference) {
-        this.num_reference = num_reference;
+    /**
+     * @param categorie the categorie to set
+     */
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 
 }

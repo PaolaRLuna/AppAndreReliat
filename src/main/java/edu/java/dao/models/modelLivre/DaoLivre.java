@@ -1,4 +1,4 @@
-package edu.java.dao.models.modeleLivre;
+package edu.java.dao.models.modelLivre;
 
 // on appel le model
 import java.sql.Connection;
@@ -16,20 +16,18 @@ public class DaoLivre implements ILivreDao {
 
     // MySQL
     // private static final String PILOTE = "com.mysql.jdbc.Driver";
-    private static final String URL_BD = "jdbc:mysql://localhost/mabdLivres";
+    private static final String URL_BD = "jdbc:mysql://localhost/mabdcollection";
     private static final String USAGER = "root";
     private static final String PASS = "";
     // on cree les requetes
-    private static final String SUPPRIMER = "DELETE FROM Livres WHERE idref=?";
-    private static final String GET_ALL = "SELECT * FROM Livres ORDER BY idref";
-    private static final String GET_BY_ID = "SELECT * FROM Livres WHERE idref=?";
-    private static final String GET_BY_NOM = "SELECT * FROM Livres WHERE nom=?";
-    private static final String GET_BY_AUTEUR = "SELECT * FROM Livres WHERE auteur=?";
-    private static final String ENREGISTRER = "INSERT INTO Livres VALUES(0,?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    private static final String MODIFIER = "UPDATE Livres SET appelation=?, qualification_forme=?, forme_typ=?, forme_atyp=?, obs_aspect=?, "
-            + "etat_conservation=?, ro_naturel=?, ro_amenage=?, hauteur_reele_mm=?, hauteur_suppose_mm=?, largeur_mm=?, eppaisseur_mm = ?,"
-            + "masse_gr=?, matiere=?, couleur_int=?, intensite_pat =?, ref_couleur_pat=?, couleur_patref = ?, ret_sigmoidales=?, ret_cotefine=?"
-            + "date_decouverte=?, info_secondaire=?, zone_ramassage=?, remarquable = ?, num_reference=? WHERE idref=?";
+    private static final String SUPPRIMER = "DELETE FROM livres WHERE id=?";
+    private static final String GET_ALL = "SELECT * FROM livres ORDER BY id";
+    private static final String GET_BY_NUM = "SELECT * FROM livres WHERE num=?";
+    private static final String GET_BY_TITRE = "SELECT * FROM livres WHERE titre=?";
+    private static final String GET_BY_AUTEUR = "SELECT * FROM livres WHERE auteur=?";
+    private static final String ENREGISTRER = "INSERT INTO livres VALUES(0,?, ?, ?, ?,?,?,?,?,?,?,?,?)";
+    private static final String MODIFIER = "UPDATE Livres SET num=?, titre=?, sousTitre=?, auteur=?, editeur=?, "
+            + "tome=?, annee=?, support=?, rangement=?, empereurs=?, collection=?, categorie = ? WHERE idl=?";
 
     // Singleton de connexion à la BD
     // getConnexion() est devenu une zonne critique.
@@ -59,24 +57,26 @@ public class DaoLivre implements ILivreDao {
         try { // requete est dans enregistrer, pour obtenir la clé qui a été generé on utilise
               // return_generated keys
             stmt = conn.prepareStatement(ENREGISTRER, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, leLivre.getAppellation());
-            stmt.setString(2, leLivre.getQualification_forme());
-            stmt.setString(3, leLivre.getForme_typ());
-            stmt.setString(4, leLivre.getForme_atyp());
-            stmt.setString(5, leLivre.getObs_aspect());
-            stmt.setString(6, leLivre.getEtat_conserv());
-            stmt.setString(7, leLivre.getRo_naturel());
-            stmt.setString(8, leLivre.getRo_amenage());
-            stmt.setString(9, leLivre.getHauteur_reelemm());
-            stmt.setString(10, leLivre.getHauteur_supposemm());
-            stmt.setString(11, leLivre.getLargeur_mm());
+            stmt.setInt(1, leLivre.getIdl());
+            stmt.setInt(2, leLivre.getNum());
+            stmt.setString(3, leLivre.getTitre());
+            stmt.setString(4, leLivre.getSousTitre());
+            stmt.setString(5, leLivre.getAuteur());
+            stmt.setString(6, leLivre.getEditeur());
+            stmt.setString(7, leLivre.getTome());
+            stmt.setString(8, leLivre.getAnnee());
+            stmt.setString(9, leLivre.getSupport());
+            stmt.setString(10, leLivre.getRangement());
+            stmt.setString(11, leLivre.getEmpereurs());
+            stmt.setString(12, leLivre.getCollection());
+            stmt.setString(13, leLivre.getCategorie());
 
             stmt.executeUpdate(); // il execute la requete
             ResultSet rs = stmt.getGeneratedKeys(); //
 
             if (rs.next()) {
-                leLivre.setIdref(rs.getInt(1)); // int est dans la premier colonne qui contient la clé, on veut la
-                                                // metre
+                leLivre.setIdl(rs.getInt(1)); // int est dans la premier colonne qui contient la clé, on veut la
+                                              // metre
                 // dans la classe pour definir le num de Livre
             }
             return "Livre bien enregistré";
@@ -90,7 +90,7 @@ public class DaoLivre implements ILivreDao {
 
     // Read
     // retourne une liste de Livres
-    public ArrayList<Livre> MdlO_GetAll() {
+    public ArrayList<Livre> MdlL_GetAll() {
         PreparedStatement stmt = null;
         List<Livre> listeLivres = new ArrayList<Livre>();
 
@@ -99,23 +99,22 @@ public class DaoLivre implements ILivreDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) { // on obtient la liste de tous les Livres et on va ligne par ligne
-                Livre Livre = new Livre();
-                Livre.setIdref(rs.getInt("idref"));
-                Livre.setAppellation(rs.getString("appelation"));
-                Livre.setQualification_forme(rs.getString("qualification_forme"));
-                Livre.setForme_typ(rs.getString("forme_typ"));
-                Livre.setForme_atyp(rs.getString("forme_atyp"));
-                Livre.setObs_aspect(rs.getString("obs_aspect"));
-                Livre.setEtat_conserv(rs.getString("etat_conservation"));
-                Livre.setRo_naturel(rs.getString("ro_naturel"));
-                Livre.setRo_amenage(rs.getString("ro_amenage"));
-                Livre.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
-                Livre.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
-                Livre.setLargeur_mm(rs.getString("largeur_mm"));
-                Livre.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
-                Livre.setMasse_gr(rs.getString("masse_gr"));
+                Livre livre = new Livre();
+                livre.setIdl(rs.getInt("idl"));
+                livre.setNum(rs.getInt("num"));
+                livre.setTitre(rs.getString("titre"));
+                livre.setSousTitre(rs.getString("sousTitre"));
+                livre.setAuteur(rs.getString("auteur"));
+                livre.setEditeur(rs.getString("editeur"));
+                livre.setTome(rs.getString("tome"));
+                livre.setAnnee(rs.getString("annee"));
+                livre.setSupport(rs.getString("support"));
+                livre.setRangement(rs.getString("rangement"));
+                livre.setEmpereurs(rs.getString("empereurs"));
+                livre.setCollection(rs.getString("collection"));
+                livre.setCategorie(rs.getString("categorie"));
 
-                listeLivres.add(Livre);
+                listeLivres.add(livre);
             }
         } catch (SQLException e) {
             // e.printStackTrace();
@@ -129,46 +128,32 @@ public class DaoLivre implements ILivreDao {
         return (ArrayList<Livre>) listeLivres;
     }
 
-    public Livre MdlO_GetById(int id) {
+    public Livre MdlL_GetByNum(int num) {
         PreparedStatement stmt = null;
 
         try {
 
-            stmt = conn.prepareStatement(GET_BY_ID);
-            stmt.setInt(1, id);
+            stmt = conn.prepareStatement(GET_BY_NUM);
+            stmt.setInt(2, num);
 
             ResultSet rs = stmt.executeQuery();
-            Livre Livre = new Livre();
+            Livre livre = new Livre();
             if (rs.next()) {
+                livre.setIdl(rs.getInt("idl"));
+                livre.setNum(rs.getInt("num"));
+                livre.setTitre(rs.getString("titre"));
+                livre.setSousTitre(rs.getString("sousTitre"));
+                livre.setAuteur(rs.getString("auteur"));
+                livre.setEditeur(rs.getString("editeur"));
+                livre.setTome(rs.getString("tome"));
+                livre.setAnnee(rs.getString("annee"));
+                livre.setSupport(rs.getString("support"));
+                livre.setRangement(rs.getString("rangement"));
+                livre.setEmpereurs(rs.getString("empereurs"));
+                livre.setCollection(rs.getString("collection"));
+                livre.setCategorie(rs.getString("categorie"));
 
-                Livre.setIdref(rs.getId("idref"));
-                Livre.setAppellation(rs.getString("appelation"));
-                Livre.setQualification_forme(rs.getString("qualification_forme"));
-                Livre.setForme_typ(rs.getString("forme_typ"));
-                Livre.setForme_atyp(rs.getString("forme_atyp"));
-                Livre.setObs_aspect(rs.getString("obs_aspect"));
-                Livre.setEtat_conserv(rs.getString("etat_conservation"));
-                Livre.setRo_naturel(rs.getString("ro_naturel"));
-                Livre.setRo_amenage(rs.getString("ro_amenage"));
-                Livre.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
-                Livre.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
-                Livre.setLargeur_mm(rs.getString("largeur_mm"));
-                Livre.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
-                Livre.setMasse_gr(rs.getString("masse_gr"));
-                Livre.setMatiere(rs.getString("matiere"));
-                Livre.setCouleur_int(rs.getString("couleur_int"));
-                Livre.setIntensite_pat(rs.getString("intensite_pat"));
-                Livre.setRef_couleur_pat(rs.getString("ref_couleur_pat"));
-                Livre.setCouleur_patref_ral(rs.getString("couleur_patref"));
-                Livre.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
-                Livre.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                Livre.setDate_decouverte(rs.getDate("date_decouverte"));
-                Livre.setInfo_secondaire(rs.getString("info_secondaire"));
-                Livre.setZone_ramassage(rs.getString("zone_rammassage"));
-                Livre.setRemarquable(rs.getString("remarquable"));
-                Livre.setNum_reference(rs.getint("num_reference"));
-
-                return Livre;
+                return livre;
             } else {
                 return null;
             }
@@ -186,41 +171,28 @@ public class DaoLivre implements ILivreDao {
         PreparedStatement stmt = null;
 
         try {
-            stmt = conn.prepareStatement(GET_BY_NOM);
+            stmt = conn.prepareStatement(GET_BY_TITRE);
             stmt.setString(1, titre);
 
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                Livre Livre = new Livre();
-                Livre.setIdref(rs.getint("idref"));
-                Livre.setAppellation(rs.getString("appelation"));
-                Livre.setQualification_forme(rs.getString("qualification_forme"));
-                Livre.setForme_typ(rs.getString("forme_typ"));
-                Livre.setForme_atyp(rs.getString("forme_atyp"));
-                Livre.setObs_aspect(rs.getString("obs_aspect"));
-                Livre.setEtat_conserv(rs.getString("etat_conservation"));
-                Livre.setRo_naturel(rs.getString("ro_naturel"));
-                Livre.setRo_amenage(rs.getString("ro_amenage"));
-                Livre.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
-                Livre.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
-                Livre.setLargeur_mm(rs.getString("largeur_mm"));
-                Livre.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
-                Livre.setMasse_gr(rs.getString("masse_gr"));
-                Livre.setMatiere(rs.getString("matiere"));
-                Livre.setCouleur_int(rs.getString("couleur_int"));
-                Livre.setIntensite_pat(rs.getString("intensite_pat"));
-                Livre.setRef_couleur_pat(rs.getString("ref_couleur_pat"));
-                Livre.setCouleur_patref_ral(rs.getString("couleur_patref"));
-                Livre.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
-                Livre.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                Livre.setDate_decouverte(rs.getDate("date_decouverte"));
-                Livre.setInfo_secondaire(rs.getString("info_secondaire"));
-                Livre.setZone_ramassage(rs.getString("zone_rammassage"));
-                Livre.setRemarquable(rs.getString("remarquable"));
-                Livre.setNum_reference(rs.getint("num_reference"));
+                Livre livre = new Livre();
+                livre.setIdl(rs.getInt("idl"));
+                livre.setNum(rs.getInt("num"));
+                livre.setTitre(rs.getString("titre"));
+                livre.setSousTitre(rs.getString("sousTitre"));
+                livre.setAuteur(rs.getString("auteur"));
+                livre.setEditeur(rs.getString("editeur"));
+                livre.setTome(rs.getString("tome"));
+                livre.setAnnee(rs.getString("annee"));
+                livre.setSupport(rs.getString("support"));
+                livre.setRangement(rs.getString("rangement"));
+                livre.setEmpereurs(rs.getString("empereurs"));
+                livre.setCollection(rs.getString("collection"));
+                livre.setCategorie(rs.getString("categorie"));
 
-                return Livre;
+                return livre;
             } else {
                 return null;
             }
@@ -234,45 +206,32 @@ public class DaoLivre implements ILivreDao {
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Livre MdlL_GetByAuteur(String zone) {
+    public Livre MdlL_GetByAuteur(String auteur) {
         PreparedStatement stmt = null;
 
         try {
-            stmt = conn.prepareStatement(GET_BY_ZONE);
-            stmt.setString(1, zone);
+            stmt = conn.prepareStatement(GET_BY_AUTEUR);
+            stmt.setString(1, auteur);
 
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                Livre Livre = new Livre();
-                Livre.setIdref(rs.getint("idref"));
-                Livre.setAppellation(rs.getString("appelation"));
-                Livre.setQualification_forme(rs.getString("qualification_forme"));
-                Livre.setForme_typ(rs.getString("forme_typ"));
-                Livre.setForme_atyp(rs.getString("forme_atyp"));
-                Livre.setObs_aspect(rs.getString("obs_aspect"));
-                Livre.setEtat_conserv(rs.getString("etat_conservation"));
-                Livre.setRo_naturel(rs.getString("ro_naturel"));
-                Livre.setRo_amenage(rs.getString("ro_amenage"));
-                Livre.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
-                Livre.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
-                Livre.setLargeur_mm(rs.getString("largeur_mm"));
-                Livre.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
-                Livre.setMasse_gr(rs.getString("masse_gr"));
-                Livre.setMatiere(rs.getString("matiere"));
-                Livre.setCouleur_int(rs.getString("couleur_int"));
-                Livre.setIntensite_pat(rs.getString("intensite_pat"));
-                Livre.setRef_couleur_pat(rs.getString("ref_couleur_pat"));
-                Livre.setCouleur_patref_ral(rs.getString("couleur_patref"));
-                Livre.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
-                Livre.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                Livre.setDate_decouverte(rs.getDate("date_decouverte"));
-                Livre.setInfo_secondaire(rs.getString("info_secondaire"));
-                Livre.setZone_ramassage(rs.getString("zone_rammassage"));
-                Livre.setRemarquable(rs.getString("remarquable"));
-                Livre.setNum_reference(rs.getint("num_reference"));
+                Livre livre = new Livre();
+                livre.setIdl(rs.getInt("idl"));
+                livre.setNum(rs.getInt("num"));
+                livre.setTitre(rs.getString("titre"));
+                livre.setSousTitre(rs.getString("sousTitre"));
+                livre.setAuteur(rs.getString("auteur"));
+                livre.setEditeur(rs.getString("editeur"));
+                livre.setTome(rs.getString("tome"));
+                livre.setAnnee(rs.getString("annee"));
+                livre.setSupport(rs.getString("support"));
+                livre.setRangement(rs.getString("rangement"));
+                livre.setEmpereurs(rs.getString("empereurs"));
+                livre.setCollection(rs.getString("collection"));
+                livre.setCategorie(rs.getString("categorie"));
 
-                return Livre;
+                return livre;
             } else {
                 return null;
             }
@@ -293,31 +252,18 @@ public class DaoLivre implements ILivreDao {
         int reponse = -1;
         try {
             stmt = conn.prepareStatement(MODIFIER); // on appele la requete modifier
-            stmt.setString(1, leLivre.getAppellation());
-            stmt.setString(2, leLivre.getQualification_forme());
-            stmt.setString(3, leLivre.getForme_typ());
-            stmt.setString(4, leLivre.getForme_atyp());
-            stmt.setString(5, leLivre.getObs_aspect());
-            stmt.setString(6, leLivre.getEtat_conserv());
-            stmt.setString(7, leLivre.getRo_naturel());
-            stmt.setString(8, leLivre.getRo_amenage());
-            stmt.setString(9, leLivre.getHauteur_reelemm());
-            stmt.setString(10, leLivre.getHauteur_supposemm());
-            stmt.setString(11, leLivre.getLargeur_mm());
-            stmt.setString(12, leLivre.getEpaisseur_mm());
-            stmt.setString(13, leLivre.getMasse_gr());
-            stmt.setString(14, leLivre.getMatiere());
-            stmt.setString(15, leLivre.getCouleur_int());
-            stmt.setString(16, leLivre.getIntensite_pat());
-            stmt.setString(17, leLivre.getRef_couleur_pat());
-            stmt.setString(18, leLivre.getCouleur_patref_ral());
-            stmt.setString(19, leLivre.getRetouche_sigmoidales());
-            stmt.setString(20, leLivre.getRetouches_cote_fine());
-            stmt.setDate(21, leLivre.getDate_decouverte());
-            stmt.setString(22, leLivre.getInfo_secondaire());
-            stmt.setString(23, leLivre.getZone_ramassage());
-            stmt.setString(24, leLivre.getRemarquable());
-            stmt.setint(25, leLivre.getNum_reference());
+            stmt.setInt(1, leLivre.getNum());
+            stmt.setString(2, leLivre.getTitre());
+            stmt.setString(3, leLivre.getSousTitre());
+            stmt.setString(4, leLivre.getAuteur());
+            stmt.setString(5, leLivre.getEditeur());
+            stmt.setString(6, leLivre.getTome());
+            stmt.setString(7, leLivre.getAnnee());
+            stmt.setString(8, leLivre.getSupport());
+            stmt.setString(9, leLivre.getRangement());
+            stmt.setString(10, leLivre.getEmpereurs());
+            stmt.setString(11, leLivre.getCollection());
+            stmt.setString(12, leLivre.getCategorie());
 
             reponse = stmt.executeUpdate();
         } catch (SQLException e) {
@@ -332,12 +278,12 @@ public class DaoLivre implements ILivreDao {
     }
 
     // Delete
-    public int MdlL_Supprimer(int idref) {
+    public int MdlL_Supprimer(int id) {
         PreparedStatement stmt = null;
         int reponse = -1;
         try {
             stmt = conn.prepareStatement(SUPPRIMER);
-            stmt.setint(1, idref);
+            stmt.setInt(1, id);
 
             reponse = stmt.executeUpdate();
         } catch (SQLException e) {

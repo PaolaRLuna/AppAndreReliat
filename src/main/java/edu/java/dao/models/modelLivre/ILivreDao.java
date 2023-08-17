@@ -11,9 +11,9 @@ public interface ILivreDao {
     // Read
     public List<Livre> MdlL_GetAll();
 
-    public Livre MdlL_GetById(int id);
+    public Livre MdlL_GetByNum(int num);
 
-    public Livre MdlL_GetByTitre(String nom);
+    public Livre MdlL_GetByTitre(String titre);
 
     public Livre MdlL_GetByAuteur(String auteur);
 

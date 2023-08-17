@@ -4,240 +4,173 @@ import java.sql.Date;
 
 public class Monnaie {
 
-    private double idref;
-    private String appellation;
-    private String qualification_forme;
-    private String forme_typ;
-    private String forme_atyp;
-    private String obs_aspect;
-    private String etat_conserv;
-    private String ro_naturel;
-    private String ro_amenage;
-    private String hauteur_reelemm;
-    private String hauteur_supposemm;
-    private String largeur_mm;
-    private String epaisseur_mm;
-    private String masse_gr;
-    private String matiere;
-    private String couleur_int;
-    private String intensite_pat;
-    private String ref_couleur_pat;
-    private String couleur_patref_ral; // gerer couleur
-    private String retouche_sigmoidales;
-    private String retouches_cote_fine;
-    private Date date_decouverte;  // gerer date // add Date class
-    private String info_secondaire;
-    private String zone_ramassage;
-    private String remarquable;
-    private double num_reference;
+    private int idclass;
+    private String format;
+    private int diametre;
+    private String empereur;
+    private String classement;
+    private String regne;
+    private String legende_avers;
+    private String legende_revers;
+    private int ref;
+    private String acquit;
+    private String etat;
+    private String lieu_date;
+    private String valnumis;
 
     // getters and setters
-    public double getIdref() {
-        return idref;
+    /**
+     * @return int return the idclass
+     */
+    public int getIdclass() {
+        return idclass;
     }
 
-    public void setIdref(double idref) {
-        this.idref = idref;
+    /**
+     * @param idclass the idclass to set
+     */
+    public void setIdclass(int idclass) {
+        this.idclass = idclass;
     }
 
-    public String getAppellation() {
-        return appellation;
+    /**
+     * @return String return the format
+     */
+    public String getFormat() {
+        return format;
     }
 
-    public void setAppellation(String appellation) {
-        this.appellation = appellation;
+    /**
+     * @param format the format to set
+     */
+    public void setFormat(String format) {
+        this.format = format;
     }
 
-    public String getQualification_forme() {
-        return qualification_forme;
+    /**
+     * @return int return the diametre
+     */
+    public int getDiametre() {
+        return diametre;
     }
 
-    public void setQualification_forme(String qualification_forme) {
-        this.qualification_forme = qualification_forme;
+    /**
+     * @param diametre the diametre to set
+     */
+    public void setDiametre(int diametre) {
+        this.diametre = diametre;
     }
 
-    public String getForme_typ() {
-        return forme_typ;
+    /**
+     * @return String return the empereur
+     */
+    public String getEmpereur() {
+        return empereur;
     }
 
-    public void setForme_typ(String forme_typ) {
-        this.forme_typ = forme_typ;
+    /**
+     * @param empereur the empereur to set
+     */
+    public void setEmpereur(String empereur) {
+        this.empereur = empereur;
     }
 
-    public String getForme_atyp() {
-        return forme_atyp;
+    /**
+     * @return String return the classement
+     */
+    public String getClassement() {
+        return classement;
     }
 
-    public void setForme_atyp(String forme_atyp) {
-        this.forme_atyp = forme_atyp;
+    /**
+     * @param classement the classement to set
+     */
+    public void setClassement(String classement) {
+        this.classement = classement;
     }
 
-    public String getObs_aspect() {
-        return obs_aspect;
+    /**
+     * @return String return the regne
+     */
+    public String getRegne() {
+        return regne;
     }
 
-    public void setObs_aspect(String obs_aspect) {
-        this.obs_aspect = obs_aspect;
+    /**
+     * @param regne the regne to set
+     */
+    public void setRegne(String regne) {
+        this.regne = regne;
     }
 
-    public String getEtat_conserv() {
-        return etat_conserv;
+    /**
+     * @return String return the legende_avers
+     */
+    public String getLegende_avers() {
+        return legende_avers;
     }
 
-    public void setEtat_conserv(String etat_conserv) {
-        this.etat_conserv = etat_conserv;
+    /**
+     * @param legende_avers the legende_avers to set
+     */
+    public void setLegende_avers(String legende_avers) {
+        this.legende_avers = legende_avers;
     }
 
-    public String getRo_naturel() {
-        return ro_naturel;
+    /**
+     * @return String return the legende_revers
+     */
+    public String getLegende_revers() {
+        return legende_revers;
     }
 
-    public void setRo_naturel(String ro_naturel) {
-        this.ro_naturel = ro_naturel;
+    /**
+     * @param legende_revers the legende_revers to set
+     */
+    public void setLegende_revers(String legende_revers) {
+        this.legende_revers = legende_revers;
     }
 
-    public String getRo_amenage() {
-        return ro_amenage;
+    /**
+     * @return String return the acquit
+     */
+    public String getAcquit() {
+        return acquit;
     }
 
-    public void setRo_amenage(String ro_amenage) {
-        this.ro_amenage = ro_amenage;
+    /**
+     * @param acquit the acquit to set
+     */
+    public void setAcquit(String acquit) {
+        this.acquit = acquit;
     }
 
-    public String getHauteur_reelemm() {
-        return hauteur_reelemm;
+    /**
+     * @return String return the lieu_date
+     */
+    public String getLieu_date() {
+        return lieu_date;
     }
 
-    public void setHauteur_reelemm(String hauteur_reelemm) {
-        this.hauteur_reelemm = hauteur_reelemm;
+    /**
+     * @param lieu_date the lieu_date to set
+     */
+    public void setLieu_date(String lieu_date) {
+        this.lieu_date = lieu_date;
     }
 
-    public String getHauteur_supposemm() {
-        return hauteur_supposemm;
+    /**
+     * @return String val return the numis
+     */
+    public String getvalNumis() {
+        return valnumis;
     }
 
-    public void setHauteur_supposemm(String hauteur_supposemm) {
-        this.hauteur_supposemm = hauteur_supposemm;
-    }
-
-    public String getLargeur_mm() {
-        return largeur_mm;
-    }
-
-    public void setLargeur_mm(String largeur_mm) {
-        this.largeur_mm = largeur_mm;
-    }
-
-    public String getEpaisseur_mm() {
-        return epaisseur_mm;
-    }
-
-    public void setEpaisseur_mm(String epaisseur_mm) {
-        this.epaisseur_mm = epaisseur_mm;
-    }
-
-    public String getMasse_gr() {
-        return masse_gr;
-    }
-
-    public void setMasse_gr(String masse_gr) {
-        this.masse_gr = masse_gr;
-    }
-
-    public String getMatiere() {
-        return matiere;
-    }
-
-    public void setMatiere(String matiere) {
-        this.matiere = matiere;
-    }
-
-    public String getCouleur_int() {
-        return couleur_int;
-    }
-
-    public void setCouleur_int(String couleur_int) {
-        this.couleur_int = couleur_int;
-    }
-
-    public String getIntensite_pat() {
-        return intensite_pat;
-    }
-
-    public void setIntensite_pat(String intensite_pat) {
-        this.intensite_pat = intensite_pat;
-    }
-
-    public String getRef_couleur_pat() {
-        return ref_couleur_pat;
-    }
-
-    public void setRef_couleur_pat(String ref_couleur_pat) {
-        this.ref_couleur_pat = ref_couleur_pat;
-    }
-
-    public String getCouleur_patref_ral() {
-        return couleur_patref_ral;
-    }
-
-    public void setCouleur_patref_ral(String couleur_patref_ral) {
-        this.couleur_patref_ral = couleur_patref_ral;
-    }
-
-    public String getRetouche_sigmoidales() {
-        return retouche_sigmoidales;
-    }
-
-    public void setRetouche_sigmoidales(String retouche_sigmoidales) {
-        this.retouche_sigmoidales = retouche_sigmoidales;
-    }
-
-    public String getRetouches_cote_fine() {
-        return retouches_cote_fine;
-    }
-
-    public void setRetouches_cote_fine(String retouches_cote_fine) {
-        this.retouches_cote_fine = retouches_cote_fine;
-    }
-
-    public Date getDate_decouverte() {
-        return date_decouverte;
-    }
-
-    public void setDate_decouverte(Date date_decouverte) {
-        this.date_decouverte = date_decouverte;
-    }
-
-    public String getInfo_secondaire() {
-        return info_secondaire;
-    }
-
-    public void setInfo_secondaire(String info_secondaire) {
-        this.info_secondaire = info_secondaire;
-    }
-
-    public String getZone_ramassage() {
-        return zone_ramassage;
-    }
-
-    public void setZone_ramassage(String zone_ramassage) {
-        this.zone_ramassage = zone_ramassage;
-    }
-
-    public String getRemarquable() {
-        return remarquable;
-    }
-
-    public void setRemarquable(String remarquable) {
-        this.remarquable = remarquable;
-    }
-
-    public double getNum_reference() {
-        return num_reference;
-    }
-
-    public void setNum_reference(double num_reference) {
-        this.num_reference = num_reference;
+    /**
+     * @param numis the numis to set
+     */
+    public void setvalNumis(String valnumis) {
+        this.valnumis = valnumis;
     }
 
 }

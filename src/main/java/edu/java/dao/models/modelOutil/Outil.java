@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Outil {
 
-    private double idref;
+    private int idref;
     private String appellation;
     private String qualification_forme;
     private String forme_typ;
@@ -25,18 +25,18 @@ public class Outil {
     private String couleur_patref_ral; // gerer couleur
     private String retouche_sigmoidales;
     private String retouches_cote_fine;
-    private Date date_decouverte;  // gerer date // add Date class
+    private Date date_decouverte; // gerer date // add Date class
     private String info_secondaire;
     private String zone_ramassage;
     private String remarquable;
     private double num_reference;
 
     // getters and setters
-    public double getIdref() {
+    public int getIdref() {
         return idref;
     }
 
-    public void setIdref(double idref) {
+    public void setIdref(int idref) {
         this.idref = idref;
     }
 

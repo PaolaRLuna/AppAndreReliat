@@ -1,23 +1,23 @@
-package edu.java.dao.controleurs.controleurOutil;
+package edu.java.dao.controleurs.controleurLivre;
 import java.util.ArrayList;
 
-import edu.java.dao.models.modelOutil.Outil;
+import edu.java.dao.models.modelLivre.Livre;
 
 public interface IActionsLivre {
     
     // Pour le CRUD - Create Read Update Delete
     // Create
-    public String CtrO_Enregistrer(Outil outil);
+    public String CtrO_Enregistrer(Livre Livre);
 
     // // Read
-    public ArrayList<Outil> CtrO_GetAllOutils();
+    public ArrayList<Livre> CtrO_GetAllLivres();
 
-    public Outil CtrO_GetOutilById(int idf);
+    public Livre CtrO_GetLivreById(int idf);
 
-    public Outil CtrO_GetOutilByTitre(String titre);
+    public Livre CtrO_GetLivreByTitre(String titre);
 
     // // Update
-    public int CtrO_Modifier(Outil outil);
+    public int CtrO_Modifier(Livre Livre);
 
     // // Delete
     public int CtrO_Enlever(int idf);

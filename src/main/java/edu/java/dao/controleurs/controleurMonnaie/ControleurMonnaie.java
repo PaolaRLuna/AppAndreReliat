@@ -1,22 +1,22 @@
 
-package edu.java.dao.controleurs.controleurOutil;
+package edu.java.dao.controleurs.controleurMonnaie;
 import java.util.ArrayList;
 
-import edu.java.dao.models.modelOutil.DaoOutil;
-import edu.java.dao.models.modelOutil.Outil;
+import edu.java.dao.models.modelMonnaie.DaoMonnaie;
+import edu.java.dao.models.modelMonnaie.Monnaie;
 
-public class ControleurMonnaie implements IActionsLivre{
+public class ControleurMonnaie implements IActionsMonnaie{
     
     private static ControleurMonnaie CtrO_Instance = null;
-    private static DaoOutil Dao_Instance = null;
+    private static DaoMonnaie Dao_Instance = null;
 
     private ControleurMonnaie(){}
 
-    public static synchronized ControleurMonnaie getControleurOutil() {
+    public static synchronized ControleurMonnaie getControleurMonnaie() {
         try {
             if (CtrO_Instance == null) { // il a aucun objet jusqu'a date et il va cree un nouvel objet
                 CtrO_Instance = new ControleurMonnaie();
-                Dao_Instance = DaoOutil.getOutilDao(); // retourne un objet de la classe DaoFilm, le model, pour pouvoir appeler les methodes du model
+                Dao_Instance = DaoMonnaie.getMonnaieDao(); // retourne un objet de la classe DaoFilm, le model, pour pouvoir appeler les methodes du model
             } // si l'instance existe donc on va la retourner CTrF_instance, toujours le meme objet (singleton)
             return CtrO_Instance;//
         } catch (Exception e) {
@@ -24,32 +24,32 @@ public class ControleurMonnaie implements IActionsLivre{
             throw new RuntimeException(e);
         }
     }
-    public String CtrO_Enregistrer(Outil outil) {
+    public String CtrO_Enregistrer(Monnaie Monnaie) {
         String message = null;
-        message = Dao_Instance.MdlO_Enregistrer(outil); // retourne un msg pour dire que le model a été bien enregistré
+        message = Dao_Instance.MdlO_Enregistrer(Monnaie); // retourne un msg pour dire que le model a été bien enregistré
         return message;
     }
 
-    public ArrayList<Outil> CtrO_GetAllOutils() {
+    public ArrayList<Monnaie> CtrO_GetAllMonnaies() {
         try{
-            return (ArrayList<Outil>) Dao_Instance.MdlO_GetAll();
+            return (ArrayList<Monnaie>) Dao_Instance.MdlO_GetAll();
         } catch (ClassCastException e){
             return null;
         }
        
     }
     
-    public Outil CtrO_GetOutilById(int idref) {
+    public Monnaie CtrO_GetMonnaieById(int idref) {
         return Dao_Instance.MdlO_GetById(idref);
     };
 
-    public Outil CtrO_GetOutilByTitre(String titre){
+    public Monnaie CtrO_GetMonnaieByTitre(String titre){
         return Dao_Instance.MdlO_GetByNom_ou_Matiere(titre);
     };
 
  
-    public int CtrO_Modifier(Outil loutil){
-        return Dao_Instance.MdlO_Modifier(loutil);
+    public int CtrO_Modifier(Monnaie lMonnaie){
+        return Dao_Instance.MdlO_Modifier(lMonnaie);
     };
 
 

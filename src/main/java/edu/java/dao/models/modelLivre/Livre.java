@@ -1,4 +1,4 @@
-package edu.java.dao.models.modelOutil;
+package edu.java.dao.models.modelLivre;
 
 import java.sql.Date;
 

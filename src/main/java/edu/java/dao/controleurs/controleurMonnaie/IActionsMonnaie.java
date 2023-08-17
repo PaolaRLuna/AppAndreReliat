@@ -1,23 +1,23 @@
-package edu.java.dao.controleurs.controleurOutil;
+package edu.java.dao.controleurs.controleurMonnaie;
 import java.util.ArrayList;
 
-import edu.java.dao.models.modelOutil.Outil;
+import edu.java.dao.models.modelMonnaie.Monnaie;
 
 public interface IActionsMonnaie {
     
     // Pour le CRUD - Create Read Update Delete
     // Create
-    public String CtrO_Enregistrer(Outil outil);
+    public String CtrO_Enregistrer(Monnaie Monnaie);
 
     // // Read
-    public ArrayList<Outil> CtrO_GetAllOutils();
+    public ArrayList<Monnaie> CtrO_GetAllMonnaies();
 
-    public Outil CtrO_GetOutilById(int idf);
+    public Monnaie CtrO_GetMonnaieById(int idf);
 
-    public Outil CtrO_GetOutilByTitre(String titre);
+    public Monnaie CtrO_GetMonnaieByTitre(String titre);
 
     // // Update
-    public int CtrO_Modifier(Outil outil);
+    public int CtrO_Modifier(Monnaie Monnaie);
 
     // // Delete
     public int CtrO_Enlever(int idf);

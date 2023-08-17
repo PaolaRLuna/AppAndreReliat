@@ -1,4 +1,4 @@
-package edu.java.dao.models.modelOutil;
+package edu.java.dao.models.modelMonnaie;
 
 import java.sql.Date;
 

@@ -1,12 +1,12 @@
-package edu.java.dao.models.modelOutil;
+package edu.java.dao.models.modelLivre;
 
 import java.util.List;
 
-public interface IOutilDao {
+public interface ILivreDao {
     // Pour le CRUD - Create Read Update Delete
     
     // Create
-    public String MdlO_Enregistrer(Livre loutil);
+    public String MdlO_Enregistrer(Livre lLivre);
     
     // Read
     public List<Livre> MdlO_GetAll();
@@ -18,7 +18,7 @@ public interface IOutilDao {
     public Livre MdlO_GetByZone(String zone);
     
     // Update
-    public int MdlO_Modifier(Livre loutil);
+    public int MdlO_Modifier(Livre lLivre);
 
     // Delete
     public int MdlO_Supprimer(int idref);

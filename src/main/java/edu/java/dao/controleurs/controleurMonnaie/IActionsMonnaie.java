@@ -17,6 +17,7 @@ public interface IActionsMonnaie {
 
     public Monnaie CtrM_GetMonnaieByMatiere(String matiere);
 
+    public Monnaie CtrM_GetMonnaieByEmpereur(String empereur);
     // // Update
     public int CtrM_Modifier(Monnaie piece);
 

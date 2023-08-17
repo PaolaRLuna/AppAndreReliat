@@ -201,18 +201,6 @@ public class Monnaie {
         this.etat = etat;
     }
 
-    /**
-     * @return String return the valnumis
-     */
-    public String getValnumis() {
-        return valnumis;
-    }
 
-    /**
-     * @param valnumis the valnumis to set
-     */
-    public void setValnumis(String valnumis) {
-        this.valnumis = valnumis;
-    }
 
 }

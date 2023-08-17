@@ -1,4 +1,5 @@
 package edu.java.dao.models.modelOutil;
+
 // on appel le model
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +16,7 @@ public class DaoOutil implements IOutilDao {
 
     // MySQL
     // private static final String PILOTE = "com.mysql.jdbc.Driver";
-    private static final String URL_BD = "jdbc:mysql://localhost/mabdoutils";
+    private static final String URL_BD = "jdbc:mysql://localhost/mabdcollection";
     private static final String USAGER = "root";
     private static final String PASS = "";
     // on cree les requetes
@@ -58,38 +59,39 @@ public class DaoOutil implements IOutilDao {
         try { // requete est dans enregistrer, pour obtenir la clé qui a été generé on utilise
               // return_generated keys
             stmt = conn.prepareStatement(ENREGISTRER, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, loutil.getAppellation());
-            stmt.setString(2, loutil.getQualification_forme());
-            stmt.setString(3, loutil.getForme_typ());
-            stmt.setString(4, loutil.getForme_atyp());
-            stmt.setString(5, loutil.getObs_aspect());
-            stmt.setString(6, loutil.getEtat_conserv());
-            stmt.setString(7, loutil.getRo_naturel());
-            stmt.setString(8, loutil.getRo_amenage());
-            stmt.setString(9, loutil.getHauteur_reelemm());
-            stmt.setString(10, loutil.getHauteur_supposemm());
-            stmt.setString(11, loutil.getLargeur_mm());
-            stmt.setString(12, loutil.getEpaisseur_mm());
-            stmt.setString(13, loutil.getMasse_gr());
-            stmt.setString(14, loutil.getMatiere());
-            stmt.setString(15, loutil.getCouleur_int());
-            stmt.setString(16, loutil.getIntensite_pat());
-            stmt.setString(17, loutil.getRef_couleur_pat());
-            stmt.setString(18, loutil.getCouleur_patref_ral());
-            stmt.setString(19, loutil.getRetouche_sigmoidales());
-            stmt.setString(20, loutil.getRetouches_cote_fine());
-            stmt.setDate(21, loutil.getDate_decouverte());
-            stmt.setString(22, loutil.getInfo_secondaire());
-            stmt.setString(23, loutil.getZone_ramassage());
-            stmt.setString(24, loutil.getRemarquable());
-            stmt.setDouble(25, loutil.getNum_reference());
+            stmt.setInt(1, loutil.getIdref());
+            stmt.setString(2, loutil.getAppellation());
+            stmt.setString(3, loutil.getQualification_forme());
+            stmt.setString(4, loutil.getForme_typ());
+            stmt.setString(5, loutil.getForme_atyp());
+            stmt.setString(6, loutil.getObs_aspect());
+            stmt.setString(7, loutil.getEtat_conserv());
+            stmt.setString(8, loutil.getRo_naturel());
+            stmt.setString(9, loutil.getRo_amenage());
+            stmt.setString(10, loutil.getHauteur_reelemm());
+            stmt.setString(11, loutil.getHauteur_supposemm());
+            stmt.setString(12, loutil.getLargeur_mm());
+            stmt.setString(13, loutil.getEpaisseur_mm());
+            stmt.setString(14, loutil.getMasse_gr());
+            stmt.setString(15, loutil.getMatiere());
+            stmt.setString(16, loutil.getCouleur_int());
+            stmt.setString(17, loutil.getIntensite_pat());
+            stmt.setString(18, loutil.getRef_couleur_pat());
+            stmt.setString(19, loutil.getCouleur_patref_ral());
+            stmt.setString(20, loutil.getRetouche_sigmoidales());
+            stmt.setString(21, loutil.getRetouches_cote_fine());
+            stmt.setDate(22, loutil.getDate_decouverte());
+            stmt.setString(23, loutil.getInfo_secondaire());
+            stmt.setString(24, loutil.getZone_ramassage());
+            stmt.setString(25, loutil.getRemarquable());
+            stmt.setDouble(26, loutil.getNum_reference());
 
             stmt.executeUpdate(); // il execute la requete
             ResultSet rs = stmt.getGeneratedKeys(); //
 
             if (rs.next()) {
-                loutil.setIdref(rs.getDouble(1)); // int est dans la premier colonne qui contient la clé, on veut la
-                                                  // metre
+                loutil.setIdref(rs.getInt(1)); // int est dans la premier colonne qui contient la clé, on veut la
+                                               // metre
                 // dans la classe pour definir le num de Outil
             }
             return "Outil bien enregistré";
@@ -145,7 +147,7 @@ public class DaoOutil implements IOutilDao {
         } catch (SQLException e) {
             // e.printStackTrace();
             System.out.println(e.getMessage());
-            //throw new RuntimeException(e);
+            // throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
@@ -347,8 +349,8 @@ public class DaoOutil implements IOutilDao {
             reponse = stmt.executeUpdate();
         } catch (SQLException e) {
             // e.printStackTrace();
-            //throw new RuntimeException(e);
-           
+            // throw new RuntimeException(e);
+
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
@@ -367,7 +369,7 @@ public class DaoOutil implements IOutilDao {
             reponse = stmt.executeUpdate();
         } catch (SQLException e) {
             // e.printStackTrace();
-           // throw new RuntimeException(e);
+            // throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);

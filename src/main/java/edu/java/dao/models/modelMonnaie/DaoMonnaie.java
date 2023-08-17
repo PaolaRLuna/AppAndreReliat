@@ -1,4 +1,5 @@
-package edu.java.dao.models.modelMonnaie;
+package edu.java.dao.models.modepiece;
+
 // on appel le model
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,20 +16,18 @@ public class DaoMonnaie implements IMonnaieDao {
 
     // MySQL
     // private static final String PILOTE = "com.mysql.jdbc.Driver";
-    private static final String URL_BD = "jdbc:mysql://localhost/mabdMonnaies";
+    private static final String URL_BD = "jdbc:mysql://localhost/mabdcollection";
     private static final String USAGER = "root";
     private static final String PASS = "";
     // on cree les requetes
-    private static final String SUPPRIMER = "DELETE FROM Monnaies WHERE idref=?";
-    private static final String GET_ALL = "SELECT * FROM Monnaies ORDER BY idref";
-    private static final String GET_BY_ID = "SELECT * FROM Monnaies WHERE idref=?";
-    private static final String GET_BY_NOM_OU_MATIERE = "SELECT * FROM Monnaies WHERE appellation=? OR matiere=?";
-    private static final String GET_BY_ZONE = "SELECT * FROM Monnaies WHERE zone_ramassage=?";
-    private static final String ENREGISTRER = "INSERT INTO Monnaies VALUES(0,?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    private static final String MODIFIER = "UPDATE Monnaies SET appelation=?, qualification_forme=?, forme_typ=?, forme_atyp=?, obs_aspect=?, "
-            + "etat_conservation=?, ro_naturel=?, ro_amenage=?, hauteur_reele_mm=?, hauteur_suppose_mm=?, largeur_mm=?, eppaisseur_mm = ?,"
-            + "masse_gr=?, matiere=?, couleur_int=?, intensite_pat =?, ref_couleur_pat=?, couleur_patref = ?, ret_sigmoidales=?, ret_cotefine=?"
-            + "date_decouverte=?, info_secondaire=?, zone_ramassage=?, remarquable = ?, num_reference=? WHERE idref=?";
+    private static final String SUPPRIMER = "DELETE FROM Monnaie WHERE id_class=?";
+    private static final String GET_ALL = "SELECT * FROM Monnaie ORDER BY id_class";
+    private static final String GET_BY_ID = "SELECT * FROM Monnaie WHERE idref=?";
+    private static final String GET_BY_MATIERE = "SELECT * FROM Monnaie WHERE matiere=?";
+    private static final String GET_BY_EMPEREUR = "SELECT * FROM Monnaie WHERE empereur=?";
+    private static final String ENREGISTRER = "INSERT INTO Monnaie VALUES(?,?, ?, ?, ?,?,?,?,?,?,?,?,?)";
+    private static final String MODIFIER = "UPDATE Monnaie SET id_class=?, format=?, diametre=?, empereur=?, classement=?, "
+            + "regne=?, leg_avers=?, leg_revers=?, ref=?, acquit=?, etat=?, lieu_date=?, valnumis=? WHERE idref=?";
 
     // Singleton de connexion à la BD
     // getConnexion() est devenu une zonne critique.
@@ -53,43 +52,31 @@ public class DaoMonnaie implements IMonnaieDao {
     }
 
     // Create
-    public String MdlO_Enregistrer(Monnaie lMonnaie) {
+    public String MdlO_Enregistrer(Monnaie piece) {
         PreparedStatement stmt = null;
         try { // requete est dans enregistrer, pour obtenir la clé qui a été generé on utilise
               // return_generated keys
             stmt = conn.prepareStatement(ENREGISTRER, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, lMonnaie.getAppellation());
-            stmt.setString(2, lMonnaie.getQualification_forme());
-            stmt.setString(3, lMonnaie.getForme_typ());
-            stmt.setString(4, lMonnaie.getForme_atyp());
-            stmt.setString(5, lMonnaie.getObs_aspect());
-            stmt.setString(6, lMonnaie.getEtat_conserv());
-            stmt.setString(7, lMonnaie.getRo_naturel());
-            stmt.setString(8, lMonnaie.getRo_amenage());
-            stmt.setString(9, lMonnaie.getHauteur_reelemm());
-            stmt.setString(10, lMonnaie.getHauteur_supposemm());
-            stmt.setString(11, lMonnaie.getLargeur_mm());
-            stmt.setString(12, lMonnaie.getEpaisseur_mm());
-            stmt.setString(13, lMonnaie.getMasse_gr());
-            stmt.setString(14, lMonnaie.getMatiere());
-            stmt.setString(15, lMonnaie.getCouleur_int());
-            stmt.setString(16, lMonnaie.getIntensite_pat());
-            stmt.setString(17, lMonnaie.getRef_couleur_pat());
-            stmt.setString(18, lMonnaie.getCouleur_patref_ral());
-            stmt.setString(19, lMonnaie.getRetouche_sigmoidales());
-            stmt.setString(20, lMonnaie.getRetouches_cote_fine());
-            stmt.setDate(21, lMonnaie.getDate_decouverte());
-            stmt.setString(22, lMonnaie.getInfo_secondaire());
-            stmt.setString(23, lMonnaie.getZone_ramassage());
-            stmt.setString(24, lMonnaie.getRemarquable());
-            stmt.setDouble(25, lMonnaie.getNum_reference());
+            stmt.setInt(1, piece.getIdclass());
+            stmt.setString(2, piece.getFormat());
+            stmt.setInt(3, piece.getDiametre());
+            stmt.setString(4, piece.getEmpereur());
+            stmt.setString(5, piece.getClassement());
+            stmt.setString(6, piece.getRegne());
+            stmt.setString(7, piece.getLegende_avers());
+            stmt.setString(8, piece.getLegende_revers());
+            stmt.setString(9, piece.getAcquit());
+            stmt.setString(10, piece.getLieu_date());
+            stmt.setString(11, piece.getvalNumis());
+            stmt.setInt(12, piece.getRef());
+            stmt.setString(13, piece.getEtat());
 
             stmt.executeUpdate(); // il execute la requete
             ResultSet rs = stmt.getGeneratedKeys(); //
 
             if (rs.next()) {
-                lMonnaie.setIdref(rs.getDouble(1)); // int est dans la premier colonne qui contient la clé, on veut la
-                                                  // metre
+                piece.setIdclass(rs.getInt(1)); // int est dans la premier colonne qui contient la clé, on veut la
+                                                    // metre
                 // dans la classe pour definir le num de Monnaie
             }
             return "Monnaie bien enregistré";
@@ -145,7 +132,7 @@ public class DaoMonnaie implements IMonnaieDao {
         } catch (SQLException e) {
             // e.printStackTrace();
             System.out.println(e.getMessage());
-            //throw new RuntimeException(e);
+            // throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
@@ -313,42 +300,42 @@ public class DaoMonnaie implements IMonnaieDao {
     // Update, faudrat avant appeler MdlF_GetById(idf) pour obtenir
     // les données du Monnaie à modifier via une interface et après envoyer
     // ce Monnaie à MdlF_Modifier(Monnaie) pour faire la mise à jour.
-    public int MdlO_Modifier(Monnaie lMonnaie) {
+    public int MdlO_Modifier(Monnaie piece) {
         PreparedStatement stmt = null;
         int reponse = -1;
         try {
             stmt = conn.prepareStatement(MODIFIER); // on appele la requete modifier
-            stmt.setString(1, lMonnaie.getAppellation());
-            stmt.setString(2, lMonnaie.getQualification_forme());
-            stmt.setString(3, lMonnaie.getForme_typ());
-            stmt.setString(4, lMonnaie.getForme_atyp());
-            stmt.setString(5, lMonnaie.getObs_aspect());
-            stmt.setString(6, lMonnaie.getEtat_conserv());
-            stmt.setString(7, lMonnaie.getRo_naturel());
-            stmt.setString(8, lMonnaie.getRo_amenage());
-            stmt.setString(9, lMonnaie.getHauteur_reelemm());
-            stmt.setString(10, lMonnaie.getHauteur_supposemm());
-            stmt.setString(11, lMonnaie.getLargeur_mm());
-            stmt.setString(12, lMonnaie.getEpaisseur_mm());
-            stmt.setString(13, lMonnaie.getMasse_gr());
-            stmt.setString(14, lMonnaie.getMatiere());
-            stmt.setString(15, lMonnaie.getCouleur_int());
-            stmt.setString(16, lMonnaie.getIntensite_pat());
-            stmt.setString(17, lMonnaie.getRef_couleur_pat());
-            stmt.setString(18, lMonnaie.getCouleur_patref_ral());
-            stmt.setString(19, lMonnaie.getRetouche_sigmoidales());
-            stmt.setString(20, lMonnaie.getRetouches_cote_fine());
-            stmt.setDate(21, lMonnaie.getDate_decouverte());
-            stmt.setString(22, lMonnaie.getInfo_secondaire());
-            stmt.setString(23, lMonnaie.getZone_ramassage());
-            stmt.setString(24, lMonnaie.getRemarquable());
-            stmt.setDouble(25, lMonnaie.getNum_reference());
+            stmt.setString(1, piece.getAppellation());
+            stmt.setString(2, piece.getQualification_forme());
+            stmt.setString(3, piece.getForme_typ());
+            stmt.setString(4, piece.getForme_atyp());
+            stmt.setString(5, piece.getObs_aspect());
+            stmt.setString(6, piece.getEtat_conserv());
+            stmt.setString(7, piece.getRo_naturel());
+            stmt.setString(8, piece.getRo_amenage());
+            stmt.setString(9, piece.getHauteur_reelemm());
+            stmt.setString(10, piece.getHauteur_supposemm());
+            stmt.setString(11, piece.getLargeur_mm());
+            stmt.setString(12, piece.getEpaisseur_mm());
+            stmt.setString(13, piece.getMasse_gr());
+            stmt.setString(14, piece.getMatiere());
+            stmt.setString(15, piece.getCouleur_int());
+            stmt.setString(16, piece.getIntensite_pat());
+            stmt.setString(17, piece.getRef_couleur_pat());
+            stmt.setString(18, piece.getCouleur_patref_ral());
+            stmt.setString(19, piece.getRetouche_sigmoidales());
+            stmt.setString(20, piece.getRetouches_cote_fine());
+            stmt.setDate(21, piece.getDate_decouverte());
+            stmt.setString(22, piece.getInfo_secondaire());
+            stmt.setString(23, piece.getZone_ramassage());
+            stmt.setString(24, piece.getRemarquable());
+            stmt.setDouble(25, piece.getNum_reference());
 
             reponse = stmt.executeUpdate();
         } catch (SQLException e) {
             // e.printStackTrace();
-            //throw new RuntimeException(e);
-           
+            // throw new RuntimeException(e);
+
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
@@ -367,7 +354,7 @@ public class DaoMonnaie implements IMonnaieDao {
             reponse = stmt.executeUpdate();
         } catch (SQLException e) {
             // e.printStackTrace();
-           // throw new RuntimeException(e);
+            // throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);

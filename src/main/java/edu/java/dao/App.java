@@ -1,12 +1,4 @@
-package edu.java.dao;
-
-import javax.swing.SwingUtilities;
-
-import edu.java.dao.controleurs.controleurOutil.ControleurOutil;
-import edu.java.dao.models.modelOutil.Outil;
-//name space est un package + le dossier + le fichier qui nous interesse
-// .class es le binaire en java
-//on a la structure de dao (controleur et model)
+/**package edu.java.dao;
 public final class App {
     private App() {
     }

@@ -70,7 +70,7 @@ public class Interface extends JFrame {
         JButton btnNewButton = new JButton("Lister Monnaie");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ArrayList<Monnaie> monnaies = controleurMonnaie.CtrO_GetAllMonnaies();
+                ArrayList<Monnaie> monnaies = controleurMonnaie.CtrM_GetAllMonnaie();
                 String[][] tab = new String[monnaies.size()][];
                 int index = 0;
                 for (Monnaie m : monnaies) {

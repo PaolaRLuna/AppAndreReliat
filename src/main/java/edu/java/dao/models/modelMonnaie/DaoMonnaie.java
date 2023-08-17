@@ -65,18 +65,19 @@ public class DaoMonnaie implements IMonnaieDao {
             stmt.setString(6, piece.getRegne());
             stmt.setString(7, piece.getLegende_avers());
             stmt.setString(8, piece.getLegende_revers());
-            stmt.setString(9, piece.getAcquit());
-            stmt.setString(10, piece.getLieu_date());
-            stmt.setString(11, piece.getvalNumis());
-            stmt.setInt(12, piece.getRef());
-            stmt.setString(13, piece.getEtat());
+            stmt.setInt(9, piece.getRef());
+            stmt.setString(9, piece.getMatiere());
+            stmt.setString(10, piece.getEtat());
+            stmt.setString(11, piece.getAcquit());
+            stmt.setString(12, piece.getLieu_date());
+            stmt.setString(13, piece.getvalNumis());
 
             stmt.executeUpdate(); // il execute la requete
             ResultSet rs = stmt.getGeneratedKeys(); //
 
             if (rs.next()) {
                 piece.setIdclass(rs.getInt(1)); // int est dans la premier colonne qui contient la clé, on veut la
-                                                    // metre
+                                                // metre
                 // dans la classe pour definir le num de Monnaie
             }
             return "Monnaie bien enregistré";
@@ -99,35 +100,23 @@ public class DaoMonnaie implements IMonnaieDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) { // on obtient la liste de tous les Monnaies et on va ligne par ligne
-                Monnaie Monnaie = new Monnaie();
-                Monnaie.setIdref(rs.getDouble("idref"));
-                Monnaie.setAppellation(rs.getString("appelation"));
-                Monnaie.setQualification_forme(rs.getString("qualification_forme"));
-                Monnaie.setForme_typ(rs.getString("forme_typ"));
-                Monnaie.setForme_atyp(rs.getString("forme_atyp"));
-                Monnaie.setObs_aspect(rs.getString("obs_aspect"));
-                Monnaie.setEtat_conserv(rs.getString("etat_conservation"));
-                Monnaie.setRo_naturel(rs.getString("ro_naturel"));
-                Monnaie.setRo_amenage(rs.getString("ro_amenage"));
-                Monnaie.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
-                Monnaie.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
-                Monnaie.setLargeur_mm(rs.getString("largeur_mm"));
-                Monnaie.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
-                Monnaie.setMasse_gr(rs.getString("masse_gr"));
-                Monnaie.setMatiere(rs.getString("matiere"));
-                Monnaie.setCouleur_int(rs.getString("couleur_int"));
-                Monnaie.setIntensite_pat(rs.getString("intensite_pat"));
-                Monnaie.setRef_couleur_pat(rs.getString("ref_couleur_pat"));
-                Monnaie.setCouleur_patref_ral(rs.getString("couleur_patref"));
-                Monnaie.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
-                Monnaie.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                Monnaie.setDate_decouverte(rs.getDate("date_decouverte"));
-                Monnaie.setInfo_secondaire(rs.getString("info_secondaire"));
-                Monnaie.setZone_ramassage(rs.getString("zone_rammassage"));
-                Monnaie.setRemarquable(rs.getString("remarquable"));
-                Monnaie.setNum_reference(rs.getDouble("num_reference"));
+                Monnaie piece = new Monnaie();
+                piece.setIdclass(rs.getInt("idclass"));
+                piece.setFormat(rs.getString("appelation"));
+                piece.setDiametre(rs.getInt("qualification_forme"));
+                piece.setEmpereur(rs.getString("forme_typ"));
+                piece.setClassement(rs.getString("forme_atyp"));
+                piece.setRegne(rs.getString("obs_aspect"));
+                piece.setLegende_avers(rs.getString("etat_conservation"));
+                piece.setLegende_revers(rs.getString("ro_naturel"));
+                piece.setRef(rs.getInt("ro_amenage"));
+                piece.setMatiere(rs.getString("hauteur_reele_mm"));
+                piece.setEtat(rs.getString("hauteur_suppose_mm"));
+                piece.setAcquit(rs.getString("largeur_mm"));
+                piece.setLieu_date(rs.getString("eppaisseur_mm"));
+                piece.setvalNumis(rs.getString("masse_gr"));
 
-                listeMonnaies.add(Monnaie);
+                listeMonnaies.add(piece);
             }
         } catch (SQLException e) {
             // e.printStackTrace();
@@ -150,37 +139,25 @@ public class DaoMonnaie implements IMonnaieDao {
             stmt.setDouble(1, idref);
 
             ResultSet rs = stmt.executeQuery();
-            Monnaie Monnaie = new Monnaie();
+            Monnaie piece = new Monnaie();
             if (rs.next()) {
 
-                Monnaie.setIdref(rs.getDouble("idref"));
-                Monnaie.setAppellation(rs.getString("appelation"));
-                Monnaie.setQualification_forme(rs.getString("qualification_forme"));
-                Monnaie.setForme_typ(rs.getString("forme_typ"));
-                Monnaie.setForme_atyp(rs.getString("forme_atyp"));
-                Monnaie.setObs_aspect(rs.getString("obs_aspect"));
-                Monnaie.setEtat_conserv(rs.getString("etat_conservation"));
-                Monnaie.setRo_naturel(rs.getString("ro_naturel"));
-                Monnaie.setRo_amenage(rs.getString("ro_amenage"));
-                Monnaie.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
-                Monnaie.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
-                Monnaie.setLargeur_mm(rs.getString("largeur_mm"));
-                Monnaie.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
-                Monnaie.setMasse_gr(rs.getString("masse_gr"));
-                Monnaie.setMatiere(rs.getString("matiere"));
-                Monnaie.setCouleur_int(rs.getString("couleur_int"));
-                Monnaie.setIntensite_pat(rs.getString("intensite_pat"));
-                Monnaie.setRef_couleur_pat(rs.getString("ref_couleur_pat"));
-                Monnaie.setCouleur_patref_ral(rs.getString("couleur_patref"));
-                Monnaie.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
-                Monnaie.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                Monnaie.setDate_decouverte(rs.getDate("date_decouverte"));
-                Monnaie.setInfo_secondaire(rs.getString("info_secondaire"));
-                Monnaie.setZone_ramassage(rs.getString("zone_rammassage"));
-                Monnaie.setRemarquable(rs.getString("remarquable"));
-                Monnaie.setNum_reference(rs.getDouble("num_reference"));
+                piece.setIdclass(rs.getInt("idref"));
+                piece.setFormat(rs.getString("appelation"));
+                piece.setDiametre(rs.getInt("qualification_forme"));
+                piece.setEmpereur(rs.getString("forme_typ"));
+                piece.setClassement(rs.getString("forme_atyp"));
+                piece.setRegne(rs.getString("obs_aspect"));
+                piece.setLegende_avers(rs.getString("etat_conservation"));
+                piece.setLegende_revers(rs.getString("ro_naturel"));
+                piece.setRef(rs.getInt("ro_amenage"));
+                piece.setMatiere(rs.getString("hauteur_reele_mm"));
+                piece.setEtat(rs.getString("hauteur_suppose_mm"));
+                piece.setAcquit(rs.getString("largeur_mm"));
+                piece.setLieu_date(rs.getString("eppaisseur_mm"));
+                piece.setvalNumis(rs.getString("masse_gr"));
 
-                return Monnaie;
+                return piece;
             } else {
                 return null;
             }

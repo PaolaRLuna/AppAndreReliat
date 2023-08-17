@@ -1,6 +1,5 @@
 package edu.java.dao.models.modelMonnaie;
 
-import java.sql.Date;
 
 public class Monnaie {
 
@@ -13,8 +12,9 @@ public class Monnaie {
     private String legende_avers;
     private String legende_revers;
     private int ref;
-    private String acquit;
+    private String matiere;
     private String etat;
+    private String acquit;
     private String lieu_date;
     private String valnumis;
 
@@ -202,5 +202,34 @@ public class Monnaie {
     }
 
 
+
+
+    /**
+     * @return String return the matiere
+     */
+    public String getMatiere() {
+        return matiere;
+    }
+
+    /**
+     * @param matiere the matiere to set
+     */
+    public void setMatiere(String matiere) {
+        this.matiere = matiere;
+    }
+
+    /**
+     * @return String return the valnumis
+     */
+    public String getValnumis() {
+        return valnumis;
+    }
+
+    /**
+     * @param valnumis the valnumis to set
+     */
+    public void setValnumis(String valnumis) {
+        this.valnumis = valnumis;
+    }
 
 }

@@ -20,7 +20,7 @@ import edu.java.dao.controleurs.controleurMonnaie.ControleurMonnaie;
 import edu.java.dao.controleurs.controleurOutil.ControleurOutil;
 import edu.java.dao.models.modelMonnaie.Monnaie;
 
-public class Interface extends JFrame {
+public class Interface {
 
     // je mets un ecouteur pour chaque boutton add action listner et j'appel la
     // methose qui lui correspond
@@ -30,18 +30,13 @@ public class Interface extends JFrame {
     private static ControleurMonnaie controleurMonnaie = null;
 
     private JPanel contentPane;
+    JFrame frame;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        controleurOutil = ControleurOutil.getControleurOutil();
-        controleurLivre = ControleurLivre.getControleurLivre();
-        controleurMonnaie = ControleurMonnaie.getControleurMonnaie();
+    public Interface() {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Interface frame = new Interface();
+                    initialise();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -50,38 +45,43 @@ public class Interface extends JFrame {
         });
     }
 
-    /**
-     * Create the frame.
-     */
-    public Interface() {
+    public void initialise() {
+        frame = new JFrame();
+        // controleurOutil = ControleurOutil.getControleurOutil();
+        // controleurLivre = ControleurLivre.getControleurLivre();
+        controleurMonnaie = ControleurMonnaie.getControleurMonnaie();
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 694, 441);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBounds(100, 100, 694, 441);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        setContentPane(contentPane);
+        frame.setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
         JPanel panel = new JPanel();
         contentPane.add(panel, BorderLayout.WEST);
         panel.setLayout(new GridLayout(10, 1));
 
-        JButton btnNewButton = new JButton("Lister Monnaie");
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton listermonnaie = new JButton("Lister Monnaie");
+        listermonnaie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ArrayList<Monnaie> monnaies = controleurMonnaie.CtrO_GetAllMonnaies();
+                ArrayList<Monnaie> monnaies = controleurMonnaie.CtrM_GetAllMonnaie();
                 String[][] tab = new String[monnaies.size()][];
                 int index = 0;
                 for (Monnaie m : monnaies) {
-                    tab[index] = new String[] { m.getIdclass() + "", m.getFormat(), m.getDiametre() + "",
+                    tab[index] = new String[] { m.getIdclass() + "", m.getFormat(),
+                            m.getDiametre() + "",
                             m.getEmpereur(), m.getClassement(), m.getRegne(), m.getLegende_avers(),
-                            m.getLegende_revers(), m.getAcquit(), m.getLieu_date(), m.getvalNumis(), m.getRef() + "",
+                            m.getLegende_revers(), m.getAcquit(), m.getLieu_date(), m.getvalNumis(),
+                            m.getRef() + "",
                             m.getEtat(), m.getMatiere() };
                     index++;
                 }
-                String[] enTete = { "Idclass", "Format", "Diametre", "Empereur", "Classement",
-                        "Regne", "Legende_avers", "Legende_revers", "Acquit", "Lieu_date", "valNumis", "Ref", "Etat",
+                String[] enTete = { "Idclass", "Format", "Diametre", "Empereur",
+                        "Classement",
+                        "Regne", "Legende_avers", "Legende_revers", "Acquit", "Lieu_date",
+                        "valNumis", "Ref", "Etat",
                         "Matiere" };
                 TableLister.afficher("Collection de Monnaies", tab, enTete);
 
@@ -90,6 +90,7 @@ public class Interface extends JFrame {
                 // Faites quelque chose avec la liste d'outils (par exemple, les afficher)
             }
         });
+        panel.add(listermonnaie);
 
         JButton btnNewButton_1 = new JButton("New button");
         panel.add(btnNewButton_1);

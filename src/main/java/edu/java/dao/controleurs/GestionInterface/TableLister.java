@@ -1,4 +1,4 @@
-package edu.java.dao.controleurs.controleurOutil;
+package edu.java.dao.controleurs.GestionInterface;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
-public class Table {
+public class TableLister {
     public static void afficher(String titre, String[][] data,
             String[] enTete) {
         JFrame frame = new JFrame();
@@ -41,12 +41,14 @@ public class Table {
         sud.add(panelLabel);
         panelLabel.setBackground(new Color(255, 128, 64));
         JPanel panelBtn = new JPanel();
+        panelBtn.setBackground(new Color(255, 128, 64));
+        sud.setBackground(Color.ORANGE);
+
         JButton retour = new JButton("Retour");
         panelBtn.add(retour);
         sud.add(panelBtn);
         retour.setFont(new Font("Serif", Font.BOLD, 20));
-        panelBtn.setBackground(new Color(255, 128, 64));
-        sud.setBackground(Color.ORANGE);
+
         retour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();

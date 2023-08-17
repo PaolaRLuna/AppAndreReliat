@@ -43,8 +43,8 @@ public class ControleurMonnaie implements IActionsMonnaie{
         return Dao_Instance.MdlO_GetById(idref);
     };
 
-    public Monnaie CtrO_GetMonnaieByTitre(String titre){
-        return Dao_Instance.MdlO_GetByNom_ou_Matiere(titre);
+    public Monnaie CtrO_GetMonnaieByMatiere(String matiere){
+        return Dao_Instance.MdlM_GetByMatiere(matiere);
     };
 
  

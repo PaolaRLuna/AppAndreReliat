@@ -173,4 +173,46 @@ public class Monnaie {
         this.valnumis = valnumis;
     }
 
+    /**
+     * @return int return the ref
+     */
+    public int getRef() {
+        return ref;
+    }
+
+    /**
+     * @param ref the ref to set
+     */
+    public void setRef(int ref) {
+        this.ref = ref;
+    }
+
+    /**
+     * @return String return the etat
+     */
+    public String getEtat() {
+        return etat;
+    }
+
+    /**
+     * @param etat the etat to set
+     */
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    /**
+     * @return String return the valnumis
+     */
+    public String getValnumis() {
+        return valnumis;
+    }
+
+    /**
+     * @param valnumis the valnumis to set
+     */
+    public void setValnumis(String valnumis) {
+        this.valnumis = valnumis;
+    }
+
 }

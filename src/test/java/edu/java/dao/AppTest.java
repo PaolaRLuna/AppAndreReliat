@@ -1,18 +1,18 @@
-/**package edu.java.dao;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+package edu.java.dao;
 
 /**
+ * import org.junit.jupiter.api.Test;
+ * 
+ * /**
  * Unit test for simple App.
  */
-/**class AppTest {
-    /**
-     * Rigorous Test.
-     */
-    /**@Test
-    void testApp() {
-        assertEquals(1, 1);
-    }
-}
+/**
+ * class AppTest {
+ * /**
+ * Rigorous Test.
+ */
+// /**@Test
+// void testApp() {
+// assertEquals(1, 1);
+// }
+// }

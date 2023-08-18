@@ -20,8 +20,8 @@ public class DaoLivre implements ILivreDao {
     private static final String USAGER = "root";
     private static final String PASS = "";
     // on cree les requetes
-    private static final String SUPPRIMER = "DELETE FROM livres WHERE id=?";
-    private static final String GET_ALL = "SELECT * FROM livres ORDER BY id";
+    private static final String SUPPRIMER = "DELETE FROM livres WHERE idl=?";
+    private static final String GET_ALL = "SELECT * FROM livres ORDER BY idl";
     private static final String GET_BY_NUM = "SELECT * FROM livres WHERE num=?";
     private static final String GET_BY_TITRE = "SELECT * FROM livres WHERE titre=?";
     private static final String GET_BY_AUTEUR = "SELECT * FROM livres WHERE auteur=?";

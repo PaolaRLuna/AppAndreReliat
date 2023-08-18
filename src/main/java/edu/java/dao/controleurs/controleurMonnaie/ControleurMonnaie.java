@@ -3,6 +3,8 @@ package edu.java.dao.controleurs.controleurMonnaie;
 
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+
 import edu.java.dao.models.modelMonnaie.DaoMonnaie;
 import edu.java.dao.models.modelMonnaie.Monnaie;
 
@@ -61,6 +63,10 @@ public class ControleurMonnaie implements IActionsMonnaie {
 
     public int CtrM_Enlever(int idclass) {
         return Dao_Instance.MdlM_Supprimer(idclass);
+    }
+
+    public ArrayList<Monnaie> CtrM_Enregistrer(JButton ajoutermonnaie) {
+        return null;
     };
 
 }

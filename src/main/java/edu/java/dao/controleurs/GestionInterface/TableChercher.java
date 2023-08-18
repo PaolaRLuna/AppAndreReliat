@@ -14,10 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
 
-public class TableSupprimer {
+public class TableChercher {
     public static void afficher(String titre, String[][] data, String[] enTete) {
         JFrame frame = new JFrame();
         frame.setBounds(100, 100, 800, 600); // Adjust the size to your needs
@@ -37,6 +40,9 @@ public class TableSupprimer {
         JTableHeader header = table.getTableHeader();
         header.setFont(new Font("Dialog", Font.BOLD, 18));
 
+        TableRowSorter<DefaultTableModel> rowSorter = new TableRowSorter<>(tableModel);
+        table.setRowSorter(rowSorter);
+
         JScrollPane scroll = new JScrollPane(table);
 
         JPanel sud = new JPanel();
@@ -46,29 +52,29 @@ public class TableSupprimer {
         panelBtn.setBackground(new Color(255, 128, 64));
         sud.setBackground(Color.ORANGE);
 
-        JButton supprimer = new JButton("Supprimer");
-        panelBtn.add(supprimer);
-        sud.add(panelBtn);
-        supprimer.setFont(new Font("Serif", Font.BOLD, 20));
+        JTextField searchField = new JTextField();
+        JButton chercher = new JButton("Chercher");
 
-        supprimer.addActionListener(new ActionListener() {
+        panelBtn.add(searchField);
+        panelBtn.add(chercher);
+        sud.add(panelBtn);
+        chercher.setFont(new Font("Serif", Font.BOLD, 20));
+
+        chercher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int selectedRow = table.getSelectedRow();
-                if (selectedRow >= 0) {
-                    int confirm = JOptionPane.showConfirmDialog(
-                            frame,
-                            "Êtes-vous sûr de vouloir supprimer cet élément ?",
-                            "Confirmation de suppression",
-                            JOptionPane.YES_NO_OPTION);
-                    if (confirm == JOptionPane.YES_OPTION) {
-                        tableModel.removeRow(selectedRow);
-                    }
+                String query = searchField.getText();
+                if (query.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
                 } else {
-                    JOptionPane.showMessageDialog(
-                            frame,
-                            "Sélectionnez un élément à supprimer",
-                            "Aucune sélection",
-                            JOptionPane.WARNING_MESSAGE);
+                    try {
+                        rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + query));
+                    } catch (java.util.regex.PatternSyntaxException ex) {
+                        JOptionPane.showMessageDialog(
+                                frame,
+                                "Erreur dans la recherche : " + ex.getMessage(),
+                                "Erreur de recherche",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });

@@ -95,8 +95,34 @@ public class Interface {
         });
         panel.add(listermonnaie);
 
-        JButton btnNewButton_1 = new JButton("Modifier Monnaie");
-        panel.add(btnNewButton_1);
+        JButton ajoutermonnaie = new JButton("Ajouter Monnaie");
+        ajoutermonnaie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Monnaie> monnaies = controleurMonnaie.CtrM_Enregistrer(ajoutermonnaie);
+                String[][] tab = new String[monnaies.size()][];
+                int index = 0;
+                for (Monnaie m : monnaies) {
+                    tab[index] = new String[] { m.getIdclass() + "", m.getFormat(),
+                            m.getDiametre() + "",
+                            m.getEmpereur(), m.getClassement(), m.getRegne(), m.getLegende_avers(),
+                            m.getLegende_revers(), m.getAcquit(), m.getLieu_date(), m.getvalNumis(),
+                            m.getRef() + "",
+                            m.getEtat(), m.getMatiere() };
+                    index++;
+                }
+                String[] enTete = { "Idclass", "Format", "Diametre", "Empereur",
+                        "Classement",
+                        "Regne", "Legende_avers", "Legende_revers", "Acquit", "Lieu_date",
+                        "valNumis", "Ref", "Etat",
+                        "Matiere" };
+                TableLister.afficher("Collection de Monnaies", tab, enTete);
+
+                // Appel à la fonctionnalité de la classe IActionsOutil
+                //// ArrayList<Outil> outils = controleurOutil.CtrO_GetAllOutils();
+                // Faites quelque chose avec la liste d'outils (par exemple, les afficher)
+            }
+        });
+        panel.add(ajoutermonnaie);
 
         JButton btnNewButton_2 = new JButton("Supprimer Monnaie");
         panel.add(btnNewButton_2);
@@ -127,7 +153,7 @@ public class Interface {
         });
         panel.add(listerlivre);
 
-        JButton modifierlivre = new JButton("Modifier Livre");
+        JButton modifierlivre = new JButton("Ajouter Livre");
         panel.add(modifierlivre);
 
         JButton btnNewButton_5 = new JButton("Supprimer Livre");
@@ -166,7 +192,7 @@ public class Interface {
         });
         panel.add(listeroutil);
 
-        JButton btnNewButton_7 = new JButton("Modifier Outil");
+        JButton btnNewButton_7 = new JButton("Ajouter Outil");
         panel.add(btnNewButton_7);
 
         JButton btnNewButton_8 = new JButton("Supprimer Outil");

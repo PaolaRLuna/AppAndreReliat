@@ -10,15 +10,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class TableSupprimer {
-    public static void afficher(String titre, String[][] data, String[] enTete) {
+public class TableAjouter {
+    public static void afficher(String titre, String[] enTete) {
         JFrame frame = new JFrame();
         frame.setBounds(100, 100, 800, 600); // Adjust the size to your needs
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -31,7 +31,7 @@ public class TableSupprimer {
         lblTitre.setFont(new Font("Serif", Font.BOLD, 25));
         panel.add(lblTitre);
 
-        DefaultTableModel tableModel = new DefaultTableModel(data, enTete);
+        DefaultTableModel tableModel = new DefaultTableModel(enTete, 0);
         JTable table = new JTable(tableModel);
         table.setRowHeight(25);
         JTableHeader header = table.getTableHeader();
@@ -46,29 +46,30 @@ public class TableSupprimer {
         panelBtn.setBackground(new Color(255, 128, 64));
         sud.setBackground(Color.ORANGE);
 
-        JButton supprimer = new JButton("Supprimer");
-        panelBtn.add(supprimer);
+        JButton ajouter = new JButton("Ajouter");
+        panelBtn.add(ajouter);
         sud.add(panelBtn);
-        supprimer.setFont(new Font("Serif", Font.BOLD, 20));
+        ajouter.setFont(new Font("Serif", Font.BOLD, 20));
 
-        supprimer.addActionListener(new ActionListener() {
+        JTextField[] inputFields = new JTextField[enTete.length];
+        JPanel panelInput = new JPanel(new GridLayout(1, enTete.length));
+
+        for (int i = 0; i < enTete.length; i++) {
+            inputFields[i] = new JTextField();
+            panelInput.add(inputFields[i]);
+        }
+
+        sud.add(panelInput);
+
+        ajouter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int selectedRow = table.getSelectedRow();
-                if (selectedRow >= 0) {
-                    int confirm = JOptionPane.showConfirmDialog(
-                            frame,
-                            "Êtes-vous sûr de vouloir supprimer cet élément ?",
-                            "Confirmation de suppression",
-                            JOptionPane.YES_NO_OPTION);
-                    if (confirm == JOptionPane.YES_OPTION) {
-                        tableModel.removeRow(selectedRow);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(
-                            frame,
-                            "Sélectionnez un élément à supprimer",
-                            "Aucune sélection",
-                            JOptionPane.WARNING_MESSAGE);
+                String[] rowData = new String[enTete.length];
+                for (int i = 0; i < enTete.length; i++) {
+                    rowData[i] = inputFields[i].getText();
+                }
+                tableModel.addRow(rowData);
+                for (int i = 0; i < enTete.length; i++) {
+                    inputFields[i].setText("");
                 }
             }
         });

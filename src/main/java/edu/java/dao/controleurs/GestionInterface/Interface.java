@@ -66,7 +66,7 @@ public class Interface {
         contentPane.add(panel, BorderLayout.WEST);
         panel.setLayout(new GridLayout(10, 1));
 
-        JButton listermonnaie = new JButton("Lister Monnaie");
+        JButton listermonnaie = new JButton("Lister Monnaie");// ***********//
         listermonnaie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Monnaie> monnaies = controleurMonnaie.CtrM_GetAllMonnaie();
@@ -115,7 +115,7 @@ public class Interface {
                         "Regne", "Legende_avers", "Legende_revers", "Acquit", "Lieu_date",
                         "valNumis", "Ref", "Etat",
                         "Matiere" };
-                TableLister.afficher("Collection de Monnaies", tab, enTete);
+                TableAjouter.afficher("Collection de Monnaies", enTete);
 
                 // Appel à la fonctionnalité de la classe IActionsOutil
                 //// ArrayList<Outil> outils = controleurOutil.CtrO_GetAllOutils();

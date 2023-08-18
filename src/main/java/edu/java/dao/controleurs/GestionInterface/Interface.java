@@ -1,20 +1,20 @@
 package edu.java.dao.controleurs.GestionInterface;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import com.viaoa.web.swing.BorderLayout;
-import com.viaoa.web.swing.EmptyBorder;
-import com.viaoa.web.swing.JButton;
-import com.viaoa.web.swing.JLabel;
 
 import edu.java.dao.controleurs.controleurLivre.ControleurLivre;
 import edu.java.dao.controleurs.controleurMonnaie.ControleurMonnaie;
@@ -32,8 +32,7 @@ public class Interface {
     private static ControleurLivre controleurLivre = null;
     private static ControleurMonnaie controleurMonnaie = null;
 
-    private JPanel contentPane;
-    JFrame frame;
+    private JFrame frame;
 
     public Interface() {
         EventQueue.invokeLater(new Runnable() {
@@ -56,9 +55,9 @@ public class Interface {
         controleurMonnaie = ControleurMonnaie.getControleurMonnaie();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 694, 441);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        frame.setBounds(100, 100, 694, 441);
+        JPanel contentPane = new JPanel();
+        contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); //
 
         frame.setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));

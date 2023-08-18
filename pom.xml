@@ -38,6 +38,12 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+  
+    <dependency>
+      <groupId>com.viaoa</groupId>
+      <artifactId>oa-web</artifactId>
+      <version>3.7.3</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

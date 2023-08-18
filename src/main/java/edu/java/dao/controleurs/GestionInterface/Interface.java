@@ -1,32 +1,34 @@
 package edu.java.dao.controleurs.GestionInterface;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
+
+import com.viaoa.web.swing.BorderLayout;
+import com.viaoa.web.swing.EmptyBorder;
+import com.viaoa.web.swing.JButton;
+import com.viaoa.web.swing.JLabel;
 
 import edu.java.dao.controleurs.controleurLivre.ControleurLivre;
 import edu.java.dao.controleurs.controleurMonnaie.ControleurMonnaie;
+import edu.java.dao.controleurs.controleurOutil.ControleurOutil;
 import edu.java.dao.models.modelLivre.Livre;
 import edu.java.dao.models.modelMonnaie.Monnaie;
+import edu.java.dao.models.modelOutil.Outil;
 
 public class Interface {
 
     // je mets un ecouteur pour chaque boutton add action listner et j'appel la
     // methose qui lui correspond
 
-    // private static ControleurOutil controleurOutil = null;
+    private static ControleurOutil controleurOutil = null;
     private static ControleurLivre controleurLivre = null;
     private static ControleurMonnaie controleurMonnaie = null;
 
@@ -44,16 +46,17 @@ public class Interface {
                 }
             }
         });
+
     }
 
     public void initialise() {
         frame = new JFrame();
-        // controleurOutil = ControleurOutil.getControleurOutil();
+        controleurOutil = ControleurOutil.getControleurOutil();
         controleurLivre = ControleurLivre.getControleurLivre();
         controleurMonnaie = ControleurMonnaie.getControleurMonnaie();
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 694, 441);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 694, 441);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -102,23 +105,51 @@ public class Interface {
         JButton listerlivre = new JButton("Lister Livre");
         listerlivre.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ArrayList<Livre> livres = controleurLivre.CtrO_GetAllLivres();
+                ArrayList<Livre> livres = controleurLivre.CtrL_GetAllLivres();
                 String[][] tab = new String[livres.size()][];
                 int index = 0;
                 for (Livre l : livres) {
-                    tab[index] = new String[] { l.getIdref() + "", l.getAppellation(),
-                            l.getQualification_forme(),
-                            l.getForme_typ(), l.getForme_atyp(), l.getObs_aspect(), l.getEtat_conserv(),
-                            l.getRo_naturel(), l.getRo_amenage(), l.getHauteur_reelemm(),
-                            l.getHauteur_supposemm(),
-                            l.getLargeur_mm(), l.getEpaisseur_mm(), l.getMasse_gr(), l.getMatiere(),
-                            l.getCouleur_int(),
-                            l.getIntensite_pat(), l.getRef_couleur_pat(), l.getCouleur_patref_ral(),
-                            l.getRetouche_sigmoidales(),
-                            l.getRetouches_cote_fine(), l.getDate_decouverte() + "",
-                            l.getInfo_secondaire(),
-                            l.getZone_ramassage(),
-                            l.getRemarquable(), l.getNum_reference() + "" };
+                    tab[index] = new String[] { l.getIdl() + "", l.getNum() + "",
+                            l.getTitre(),
+                            l.getSousTitre(), l.getAuteur(), l.getEditeur(), l.getTome(),
+                            l.getAnnee(), l.getSupport(), l.getRangement(), l.getEmpereurs(),
+                            l.getCollection(), l.getCategorie() };
+                    index++;
+                }
+                String[] enTete = { "idl", "num", "titre", "sousTitre",
+                        "auteur", "editeur", "tome", "annee", "support",
+                        "rangement", "empereurs", "collection", "categorie" };
+                TableLister.afficher("Collection de Livres", tab, enTete);
+
+                // Appel à la fonctionnalité de la classe IActionsOutil
+                //// ArrayList<Outil> outils = controleurOutil.CtrO_GetAllOutils();
+                // Faites quelque chose avec la liste d'outils (par exemple, les afficher)
+            }
+        });
+        panel.add(listerlivre);
+
+        JButton modifierlivre = new JButton("Modifier Livre");
+        panel.add(modifierlivre);
+
+        JButton btnNewButton_5 = new JButton("Supprimer Livre");
+        panel.add(btnNewButton_5);
+
+        JButton listeroutil = new JButton("Lister Outil");
+        listeroutil.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Outil> outils = controleurOutil.CtrO_GetAllOutils();
+                String[][] tab = new String[outils.size()][];
+                int index = 0;
+                for (Outil o : outils) {
+                    tab[index] = new String[] { o.getIdref() + "", o.getAppellation(),
+                            o.getQualification_forme(), o.getForme_typ(), o.getForme_atyp(), o.getObs_aspect(),
+                            o.getEtat_conserv(), o.getRo_naturel(), o.getRo_amenage(), o.getHauteur_reelemm(),
+                            o.getHauteur_supposemm(), o.getLargeur_mm(), o.getEpaisseur_mm(), o.getMasse_gr(),
+                            o.getMatiere(),
+                            o.getCouleur_int(), o.getIntensite_pat(), o.getRef_couleur_pat(), o.getCouleur_patref_ral(),
+                            o.getRetouche_sigmoidales(), o.getRetouches_cote_fine(), o.getDate_decouverte() + "",
+                            o.getInfo_secondaire(), o.getZone_ramassage(), o.getRemarquable(),
+                            o.getNum_reference() + "" };
                     index++;
                 }
                 String[] enTete = { "idref", "appellation", "qualification_forme",
@@ -132,22 +163,9 @@ public class Interface {
                         "date_decouverte",
                         "info_secondaire", "zone_ramassage", "remarquable", "num_reference" };
                 TableLister.afficher("Collection de Livres", tab, enTete);
-
-                // Appel à la fonctionnalité de la classe IActionsOutil
-                //// ArrayList<Outil> outils = controleurOutil.CtrO_GetAllOutils();
-                // Faites quelque chose avec la liste d'outils (par exemple, les afficher)
             }
         });
-        panel.add(listerlivre);
-
-        JButton btnNewButton_4 = new JButton("Modifier Livre");
-        panel.add(btnNewButton_4);
-
-        JButton btnNewButton_5 = new JButton("Supprimer Livre");
-        panel.add(btnNewButton_5);
-
-        JButton btnNewButton_6 = new JButton("Lister Outil");
-        panel.add(btnNewButton_6);
+        panel.add(listeroutil);
 
         JButton btnNewButton_7 = new JButton("Modifier Outil");
         panel.add(btnNewButton_7);
@@ -163,14 +181,17 @@ public class Interface {
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lblNewLabel, BorderLayout.NORTH);
 
-        JLabel lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon(
+        JLabel image = new JLabel("");
+        image.setIcon(new ImageIcon(
                 "C:\\Users\\ahgue\\OneDrive\\Documents\\GitHub\\Projet_Appli_bureau\\src\\main\\java\\edu\\java\\dao\\controleurs\\GestionInterface\\pieceor.jpg"));
-        contentPane.add(lblNewLabel_1, BorderLayout.CENTER);
+        contentPane.add(image, BorderLayout.CENTER);
 
         JLabel lblNewLabel_2 = new JLabel("Choisir Votre Choix");
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lblNewLabel_2, BorderLayout.SOUTH);
+    }
+
+    private void setDefaultCloseOperation(int exitOnClose) {
     }
 
 }

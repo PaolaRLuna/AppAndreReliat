@@ -11,7 +11,7 @@ public class Monnaie {
     private String regne;
     private String legende_avers;
     private String legende_revers;
-    private int ref;
+    private String ref;
     private String matiere;
     private String etat;
     private String acquit;
@@ -176,14 +176,14 @@ public class Monnaie {
     /**
      * @return int return the ref
      */
-    public int getRef() {
+    public String getRef() {
         return ref;
     }
 
     /**
      * @param ref the ref to set
      */
-    public void setRef(int ref) {
+    public void setRef(String ref) {
         this.ref = ref;
     }
 

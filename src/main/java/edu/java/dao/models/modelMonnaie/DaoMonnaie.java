@@ -65,7 +65,7 @@ public class DaoMonnaie implements IMonnaieDao {
             stmt.setString(6, piece.getRegne());
             stmt.setString(7, piece.getLegende_avers());
             stmt.setString(8, piece.getLegende_revers());
-            stmt.setInt(9, piece.getRef());
+            stmt.setString(9, piece.getRef());
             stmt.setString(10, piece.getMatiere());
             stmt.setString(11, piece.getEtat());
             stmt.setString(12, piece.getAcquit());
@@ -109,7 +109,7 @@ public class DaoMonnaie implements IMonnaieDao {
                 piece.setRegne(rs.getString("regne"));
                 piece.setLegende_avers(rs.getString("leg_avers"));
                 piece.setLegende_revers(rs.getString("leg_revers"));
-                piece.setRef(rs.getInt("ref"));
+                piece.setRef(rs.getString("ref"));
                 piece.setMatiere(rs.getString("matiere"));
                 piece.setEtat(rs.getString("etat"));
                 piece.setAcquit(rs.getString("acquit"));
@@ -149,7 +149,7 @@ public class DaoMonnaie implements IMonnaieDao {
                 piece.setRegne(rs.getString("regne"));
                 piece.setLegende_avers(rs.getString("leg_avers"));
                 piece.setLegende_revers(rs.getString("leg_revers"));
-                piece.setRef(rs.getInt("ref"));
+                piece.setRef(rs.getString("ref"));
                 piece.setMatiere(rs.getString("matiere"));
                 piece.setEtat(rs.getString("etat"));
                 piece.setAcquit(rs.getString("acquit"));
@@ -189,7 +189,7 @@ public class DaoMonnaie implements IMonnaieDao {
                 piece.setRegne(rs.getString("regne"));
                 piece.setLegende_avers(rs.getString("leg_avers"));
                 piece.setLegende_revers(rs.getString("leg_revers"));
-                piece.setRef(rs.getInt("ref"));
+                piece.setRef(rs.getString("ref"));
                 piece.setMatiere(rs.getString("matiere"));
                 piece.setEtat(rs.getString("etat"));
                 piece.setAcquit(rs.getString("acquit"));
@@ -229,7 +229,7 @@ public class DaoMonnaie implements IMonnaieDao {
                 piece.setRegne(rs.getString("regne"));
                 piece.setLegende_avers(rs.getString("leg_avers"));
                 piece.setLegende_revers(rs.getString("leg_revers"));
-                piece.setRef(rs.getInt("ref"));
+                piece.setRef(rs.getString("ref"));
                 piece.setMatiere(rs.getString("matiere"));
                 piece.setEtat(rs.getString("etat"));
                 piece.setAcquit(rs.getString("acquit"));
@@ -265,7 +265,7 @@ public class DaoMonnaie implements IMonnaieDao {
             stmt.setString(6, piece.getRegne());
             stmt.setString(7, piece.getLegende_avers());
             stmt.setString(8, piece.getLegende_revers());
-            stmt.setInt(9, piece.getRef());
+            stmt.setString(9, piece.getRef());
             stmt.setString(10, piece.getMatiere());
             stmt.setString(11, piece.getEtat());
             stmt.setString(12, piece.getAcquit());

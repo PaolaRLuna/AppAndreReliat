@@ -22,12 +22,12 @@ public class DaoMonnaie implements IMonnaieDao {
     // on cree les requetes
     private static final String SUPPRIMER = "DELETE FROM monnaie WHERE id_class=?";
     private static final String GET_ALL = "SELECT * FROM monnaie ORDER BY id_class";
-    private static final String GET_BY_ID = "SELECT * FROM monnaie WHERE idref=?";
+    private static final String GET_BY_ID = "SELECT * FROM monnaie WHERE id_class=?";
     private static final String GET_BY_MATIERE = "SELECT * FROM monnaie WHERE matiere=?";
     private static final String GET_BY_EMPEREUR = "SELECT * FROM monnaie WHERE empereur=?";
     private static final String ENREGISTRER = "INSERT INTO monnaie VALUES(?,?, ?, ?, ?,?,?,?,?,?,?,?,?)";
     private static final String MODIFIER = "UPDATE monnaie SET id_class=?, format=?, diametre=?, empereur=?, classement=?, "
-            + "regne=?, leg_avers=?, leg_revers=?, ref=?, matiere=?,  etat=?, acquit=?, lieu_date=?, valnumis=? WHERE idref=?";
+            + "regne=?, leg_avers=?, leg_revers=?, ref=?, matiere=?,  etat=?, acquit=?, lieu_date=?, valnumis=? WHERE id_class=?";
 
     // Singleton de connexion à la BD
     // getConnexion() est devenu une zonne critique.

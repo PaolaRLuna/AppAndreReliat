@@ -20,13 +20,13 @@ public class DaoOutil implements IOutilDao {
     private static final String USAGER = "root";
     private static final String PASS = "";
     // on cree les requetes
-    private static final String SUPPRIMER = "DELETE FROM Outils WHERE idref=?";
-    private static final String GET_ALL = "SELECT * FROM Outils ORDER BY idref";
-    private static final String GET_BY_ID = "SELECT * FROM Outils WHERE idref=?";
-    private static final String GET_BY_NOM_OU_MATIERE = "SELECT * FROM Outils WHERE appellation=? OR matiere=?";
-    private static final String GET_BY_ZONE = "SELECT * FROM Outils WHERE zone_ramassage=?";
-    private static final String ENREGISTRER = "INSERT INTO Outils VALUES(0,?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    private static final String MODIFIER = "UPDATE Outils SET appelation=?, qualification_forme=?, forme_typ=?, forme_atyp=?, obs_aspect=?, "
+    private static final String SUPPRIMER = "DELETE FROM outils WHERE idref=?";
+    private static final String GET_ALL = "SELECT * FROM outils ORDER BY idref";
+    private static final String GET_BY_ID = "SELECT * FROM outils WHERE idref=?";
+    private static final String GET_BY_NOM_OU_MATIERE = "SELECT * FROM outils WHERE appellation=? OR matiere=?";
+    private static final String GET_BY_ZONE = "SELECT * FROM outils WHERE zone_ramassage=?";
+    private static final String ENREGISTRER = "INSERT INTO outils VALUES(0,?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String MODIFIER = "UPDATE outils SET appelation=?, qualification_forme=?, forme_typ=?, forme_atyp=?, obs_aspect=?, "
             + "etat_conservation=?, ro_naturel=?, ro_amenage=?, hauteur_reele_mm=?, hauteur_suppose_mm=?, largeur_mm=?, eppaisseur_mm = ?,"
             + "masse_gr=?, matiere=?, couleur_int=?, intensite_pat =?, ref_couleur_pat=?, couleur_patref = ?, ret_sigmoidales=?, ret_cotefine=?"
             + "date_decouverte=?, info_secondaire=?, zone_ramassage=?, remarquable = ?, num_reference=? WHERE idref=?";
@@ -124,10 +124,10 @@ public class DaoOutil implements IOutilDao {
                 outil.setEtat_conserv(rs.getString("etat_conservation"));
                 outil.setRo_naturel(rs.getString("ro_naturel"));
                 outil.setRo_amenage(rs.getString("ro_amenage"));
-                outil.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
+                outil.setHauteur_reelemm(rs.getString("hauteur_reel_mm"));
                 outil.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
                 outil.setLargeur_mm(rs.getString("largeur_mm"));
-                outil.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
+                outil.setEpaisseur_mm(rs.getString("epaisseur_mm"));
                 outil.setMasse_gr(rs.getString("masse_gr"));
                 outil.setMatiere(rs.getString("matiere"));
                 outil.setCouleur_int(rs.getString("couleur_int"));
@@ -136,9 +136,9 @@ public class DaoOutil implements IOutilDao {
                 outil.setCouleur_patref_ral(rs.getString("couleur_patref"));
                 outil.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
                 outil.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                outil.setDate_decouverte(rs.getDate("date_decouverte"));
+                outil.setDate_decouverte(rs.getDate("date_decouv"));
                 outil.setInfo_secondaire(rs.getString("info_secondaire"));
-                outil.setZone_ramassage(rs.getString("zone_rammassage"));
+                outil.setZone_ramassage(rs.getString("zone_ramassage"));
                 outil.setRemarquable(rs.getString("remarquable"));
                 outil.setNum_reference(rs.getDouble("num_reference"));
 
@@ -177,10 +177,10 @@ public class DaoOutil implements IOutilDao {
                 outil.setEtat_conserv(rs.getString("etat_conservation"));
                 outil.setRo_naturel(rs.getString("ro_naturel"));
                 outil.setRo_amenage(rs.getString("ro_amenage"));
-                outil.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
+                outil.setHauteur_reelemm(rs.getString("hauteur_reel_mm"));
                 outil.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
                 outil.setLargeur_mm(rs.getString("largeur_mm"));
-                outil.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
+                outil.setEpaisseur_mm(rs.getString("epaisseur_mm"));
                 outil.setMasse_gr(rs.getString("masse_gr"));
                 outil.setMatiere(rs.getString("matiere"));
                 outil.setCouleur_int(rs.getString("couleur_int"));
@@ -189,9 +189,9 @@ public class DaoOutil implements IOutilDao {
                 outil.setCouleur_patref_ral(rs.getString("couleur_patref"));
                 outil.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
                 outil.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                outil.setDate_decouverte(rs.getDate("date_decouverte"));
+                outil.setDate_decouverte(rs.getDate("date_decouv"));
                 outil.setInfo_secondaire(rs.getString("info_secondaire"));
-                outil.setZone_ramassage(rs.getString("zone_rammassage"));
+                outil.setZone_ramassage(rs.getString("zone_ramassage"));
                 outil.setRemarquable(rs.getString("remarquable"));
                 outil.setNum_reference(rs.getDouble("num_reference"));
 
@@ -229,10 +229,10 @@ public class DaoOutil implements IOutilDao {
                 outil.setEtat_conserv(rs.getString("etat_conservation"));
                 outil.setRo_naturel(rs.getString("ro_naturel"));
                 outil.setRo_amenage(rs.getString("ro_amenage"));
-                outil.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
+                outil.setHauteur_reelemm(rs.getString("hauteur_reel_mm"));
                 outil.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
                 outil.setLargeur_mm(rs.getString("largeur_mm"));
-                outil.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
+                outil.setEpaisseur_mm(rs.getString("epaisseur_mm"));
                 outil.setMasse_gr(rs.getString("masse_gr"));
                 outil.setMatiere(rs.getString("matiere"));
                 outil.setCouleur_int(rs.getString("couleur_int"));
@@ -241,9 +241,9 @@ public class DaoOutil implements IOutilDao {
                 outil.setCouleur_patref_ral(rs.getString("couleur_patref"));
                 outil.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
                 outil.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                outil.setDate_decouverte(rs.getDate("date_decouverte"));
+                outil.setDate_decouverte(rs.getDate("date_decouv"));
                 outil.setInfo_secondaire(rs.getString("info_secondaire"));
-                outil.setZone_ramassage(rs.getString("zone_rammassage"));
+                outil.setZone_ramassage(rs.getString("zone_ramassage"));
                 outil.setRemarquable(rs.getString("remarquable"));
                 outil.setNum_reference(rs.getDouble("num_reference"));
 
@@ -281,10 +281,10 @@ public class DaoOutil implements IOutilDao {
                 outil.setEtat_conserv(rs.getString("etat_conservation"));
                 outil.setRo_naturel(rs.getString("ro_naturel"));
                 outil.setRo_amenage(rs.getString("ro_amenage"));
-                outil.setHauteur_reelemm(rs.getString("hauteur_reele_mm"));
+                outil.setHauteur_reelemm(rs.getString("hauteur_reel_mm"));
                 outil.setHauteur_supposemm(rs.getString("hauteur_suppose_mm"));
                 outil.setLargeur_mm(rs.getString("largeur_mm"));
-                outil.setEpaisseur_mm(rs.getString("eppaisseur_mm"));
+                outil.setEpaisseur_mm(rs.getString("epaisseur_mm"));
                 outil.setMasse_gr(rs.getString("masse_gr"));
                 outil.setMatiere(rs.getString("matiere"));
                 outil.setCouleur_int(rs.getString("couleur_int"));
@@ -293,9 +293,9 @@ public class DaoOutil implements IOutilDao {
                 outil.setCouleur_patref_ral(rs.getString("couleur_patref"));
                 outil.setRetouche_sigmoidales(rs.getString("ret_sigmoidales"));
                 outil.setRetouches_cote_fine(rs.getString("ret_cotefine"));
-                outil.setDate_decouverte(rs.getDate("date_decouverte"));
+                outil.setDate_decouverte(rs.getDate("date_decouv"));
                 outil.setInfo_secondaire(rs.getString("info_secondaire"));
-                outil.setZone_ramassage(rs.getString("zone_rammassage"));
+                outil.setZone_ramassage(rs.getString("zone_ramassage"));
                 outil.setRemarquable(rs.getString("remarquable"));
                 outil.setNum_reference(rs.getDouble("num_reference"));
 

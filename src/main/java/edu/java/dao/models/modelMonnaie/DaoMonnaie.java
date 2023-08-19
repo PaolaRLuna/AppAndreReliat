@@ -66,11 +66,11 @@ public class DaoMonnaie implements IMonnaieDao {
             stmt.setString(7, piece.getLegende_avers());
             stmt.setString(8, piece.getLegende_revers());
             stmt.setInt(9, piece.getRef());
-            stmt.setString(9, piece.getMatiere());
-            stmt.setString(10, piece.getEtat());
-            stmt.setString(11, piece.getAcquit());
-            stmt.setString(12, piece.getLieu_date());
-            stmt.setString(13, piece.getvalNumis());
+            stmt.setString(10, piece.getMatiere());
+            stmt.setString(11, piece.getEtat());
+            stmt.setString(12, piece.getAcquit());
+            stmt.setString(13, piece.getLieu_date());
+            stmt.setString(14, piece.getvalNumis());
 
             stmt.executeUpdate(); // il execute la requete
             ResultSet rs = stmt.getGeneratedKeys(); //
@@ -101,13 +101,13 @@ public class DaoMonnaie implements IMonnaieDao {
 
             while (rs.next()) { // on obtient la liste de tous les Monnaies et on va ligne par ligne
                 Monnaie piece = new Monnaie();
-                piece.setIdclass(rs.getInt("idclass"));
+                piece.setIdclass(rs.getInt("id_class"));
                 piece.setFormat(rs.getString("format"));
                 piece.setDiametre(rs.getInt("diametre"));
                 piece.setEmpereur(rs.getString("empereur"));
                 piece.setClassement(rs.getString("classement"));
                 piece.setRegne(rs.getString("regne"));
-                piece.setLegende_avers(rs.getString("leg_averse"));
+                piece.setLegende_avers(rs.getString("leg_avers"));
                 piece.setLegende_revers(rs.getString("leg_revers"));
                 piece.setRef(rs.getInt("ref"));
                 piece.setMatiere(rs.getString("matiere"));
@@ -115,7 +115,6 @@ public class DaoMonnaie implements IMonnaieDao {
                 piece.setAcquit(rs.getString("acquit"));
                 piece.setLieu_date(rs.getString("lieu_date"));
                 piece.setvalNumis(rs.getString("valnumis"));
-
                 listeMonnaies.add(piece);
             }
         } catch (SQLException e) {
@@ -142,13 +141,13 @@ public class DaoMonnaie implements IMonnaieDao {
             Monnaie piece = new Monnaie();
             if (rs.next()) {
 
-                piece.setIdclass(rs.getInt("idclass"));
+                piece.setIdclass(rs.getInt("id_class"));
                 piece.setFormat(rs.getString("format"));
                 piece.setDiametre(rs.getInt("diametre"));
                 piece.setEmpereur(rs.getString("empereur"));
                 piece.setClassement(rs.getString("classement"));
                 piece.setRegne(rs.getString("regne"));
-                piece.setLegende_avers(rs.getString("leg_averse"));
+                piece.setLegende_avers(rs.getString("leg_avers"));
                 piece.setLegende_revers(rs.getString("leg_revers"));
                 piece.setRef(rs.getInt("ref"));
                 piece.setMatiere(rs.getString("matiere"));
@@ -182,13 +181,13 @@ public class DaoMonnaie implements IMonnaieDao {
 
             if (rs.next()) {
                 Monnaie piece = new Monnaie();
-                piece.setIdclass(rs.getInt("idclass"));
+                piece.setIdclass(rs.getInt("id_class"));
                 piece.setFormat(rs.getString("format"));
                 piece.setDiametre(rs.getInt("diametre"));
                 piece.setEmpereur(rs.getString("empereur"));
                 piece.setClassement(rs.getString("classement"));
                 piece.setRegne(rs.getString("regne"));
-                piece.setLegende_avers(rs.getString("leg_averse"));
+                piece.setLegende_avers(rs.getString("leg_avers"));
                 piece.setLegende_revers(rs.getString("leg_revers"));
                 piece.setRef(rs.getInt("ref"));
                 piece.setMatiere(rs.getString("matiere"));
@@ -222,13 +221,13 @@ public class DaoMonnaie implements IMonnaieDao {
 
             if (rs.next()) {
                 Monnaie piece = new Monnaie();
-                piece.setIdclass(rs.getInt("idclass"));
+                piece.setIdclass(rs.getInt("id_class"));
                 piece.setFormat(rs.getString("format"));
                 piece.setDiametre(rs.getInt("diametre"));
                 piece.setEmpereur(rs.getString("empereur"));
                 piece.setClassement(rs.getString("classement"));
                 piece.setRegne(rs.getString("regne"));
-                piece.setLegende_avers(rs.getString("leg_averse"));
+                piece.setLegende_avers(rs.getString("leg_avers"));
                 piece.setLegende_revers(rs.getString("leg_revers"));
                 piece.setRef(rs.getInt("ref"));
                 piece.setMatiere(rs.getString("matiere"));

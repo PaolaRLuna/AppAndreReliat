@@ -1,7 +1,5 @@
 package edu.java.dao.models.modelLivre;
 
-import java.sql.Date;
-
 public class Livre {
 
     private int idl;
@@ -17,6 +15,28 @@ public class Livre {
     private String empereurs;
     private String collection;
     private String categorie;
+
+    public Livre() {
+        super();
+    }
+
+    public Livre(int idl, int num, String titre, String sousTitre, String auteur,
+            String editeur, String tome, String annee, String support, String rangement, String empereurs,
+            String collection, String categorie) {
+        this.idl = idl;
+        this.num = num;
+        this.titre = titre;
+        this.sousTitre = sousTitre;
+        this.auteur = auteur;
+        this.editeur = editeur;
+        this.tome = tome;
+        this.annee = annee;
+        this.support = support;
+        this.rangement = rangement;
+        this.empereurs = empereurs;
+        this.collection = collection;
+        this.categorie = categorie;
+    }
 
     // getters and setters
 

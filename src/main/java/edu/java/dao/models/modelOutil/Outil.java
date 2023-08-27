@@ -1,6 +1,7 @@
 package edu.java.dao.models.modelOutil;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Outil {
 
@@ -30,6 +31,47 @@ public class Outil {
     private String zone_ramassage;
     private String remarquable;
     private double num_reference;
+
+    public Outil() {
+        super();
+    }
+
+    public Outil(int idref, String appellation, String qualification_forme, String forme_typ, String forme_atyp,
+            String obs_aspect,
+            String etat_conserv, String ro_naturel, String ro_amenage, String hauteur_reelemm, String hauteur_supposemm,
+            String largeur_mm, String epaisseur_mm, String masse_gr, String matiere, String couleur_int,
+            String intensite_pat,
+            String ref_couleur_pat, String couleur_patref_ral, String retouche_sigmoidales, String retouches_cote_fine,
+            LocalDate date_decouverte2, String info_secondaire, String zone_ramassage, String remarquable,
+            double num_reference) {
+        this.idref = idref;
+        this.appellation = appellation;
+        this.qualification_forme = qualification_forme;
+        this.forme_typ = forme_typ;
+        this.forme_atyp = forme_atyp;
+        this.obs_aspect = obs_aspect;
+        this.etat_conserv = etat_conserv;
+        this.ro_naturel = ro_naturel;
+        this.ro_amenage = ro_amenage;
+        this.hauteur_reelemm = hauteur_reelemm;
+        this.hauteur_supposemm = hauteur_supposemm;
+        this.largeur_mm = largeur_mm;
+        this.epaisseur_mm = epaisseur_mm;
+        this.masse_gr = masse_gr;
+        this.matiere = matiere;
+        this.couleur_int = couleur_int;
+        this.intensite_pat = intensite_pat;
+        this.ref_couleur_pat = ref_couleur_pat;
+        this.couleur_patref_ral = couleur_patref_ral; // gerer couleur
+        this.retouche_sigmoidales = retouche_sigmoidales;
+        this.retouches_cote_fine = retouches_cote_fine;
+        this.date_decouverte = date_decouverte; // gerer date // add Date class
+        this.info_secondaire = info_secondaire;
+        this.zone_ramassage = zone_ramassage;
+        this.remarquable = remarquable;
+        this.num_reference = num_reference;
+
+    }
 
     // getters and setters
     public int getIdref() {

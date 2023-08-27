@@ -1,6 +1,5 @@
 package edu.java.dao.models.modelMonnaie;
 
-
 public class Monnaie {
 
     private int idclass;
@@ -22,6 +21,30 @@ public class Monnaie {
     /**
      * @return int return the idclass
      */
+
+    public Monnaie() {
+        super();
+    }
+
+    public Monnaie(int idclass, String format, int diametre, String empereur, String classement,
+            String regne, String legende_avers, String legende_revers, String ref, String matiere, String etat,
+            String acquit, String lieu_date, String valnumis) {
+        this.idclass = idclass;
+        this.format = format;
+        this.diametre = diametre;
+        this.empereur = empereur;
+        this.classement = classement;
+        this.regne = regne;
+        this.legende_avers = legende_avers;
+        this.legende_revers = legende_revers;
+        this.ref = ref;
+        this.matiere = matiere;
+        this.etat = etat;
+        this.acquit = acquit;
+        this.lieu_date = lieu_date;
+        this.valnumis = valnumis;
+    }
+
     public int getIdclass() {
         return idclass;
     }
@@ -201,9 +224,6 @@ public class Monnaie {
         this.etat = etat;
     }
 
-
-
-
     /**
      * @return String return the matiere
      */
@@ -217,6 +237,5 @@ public class Monnaie {
     public void setMatiere(String matiere) {
         this.matiere = matiere;
     }
-
 
 }

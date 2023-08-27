@@ -1,6 +1,7 @@
 package edu.java.dao.controleurs.GestionInterface;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -55,7 +56,7 @@ public class Interface {
         controleurMonnaie = ControleurMonnaie.getControleurMonnaie();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 694, 441);
+        frame.setBounds(100, 100, 881, 624);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); //
 
@@ -64,9 +65,10 @@ public class Interface {
 
         JPanel panel = new JPanel();
         contentPane.add(panel, BorderLayout.WEST);
-        panel.setLayout(new GridLayout(10, 1));
+        panel.setLayout(new GridLayout(13, 1));
 
         JButton listermonnaie = new JButton("Lister Monnaie");// ***********//
+        listermonnaie.setFont(new Font("Tahoma", Font.BOLD, 13));
         listermonnaie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Monnaie> monnaies = controleurMonnaie.CtrM_GetAllMonnaie();
@@ -96,38 +98,35 @@ public class Interface {
         panel.add(listermonnaie);
 
         JButton ajoutermonnaie = new JButton("Ajouter Monnaie");
+        ajoutermonnaie.setFont(new Font("Tahoma", Font.BOLD, 13));
+
         ajoutermonnaie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ArrayList<Monnaie> monnaies = controleurMonnaie.CtrM_Enregistrer(ajoutermonnaie);
-                String[][] tab = new String[monnaies.size()][];
-                int index = 0;
-                for (Monnaie m : monnaies) {
-                    tab[index] = new String[] { m.getIdclass() + "", m.getFormat(),
-                            m.getDiametre() + "",
-                            m.getEmpereur(), m.getClassement(), m.getRegne(), m.getLegende_avers(),
-                            m.getLegende_revers(), m.getAcquit(), m.getLieu_date(), m.getvalNumis(),
-                            m.getRef() + "",
-                            m.getEtat(), m.getMatiere() };
-                    index++;
-                }
-                String[] enTete = { "Idclass", "Format", "Diametre", "Empereur",
-                        "Classement",
-                        "Regne", "Legende_avers", "Legende_revers", "Acquit", "Lieu_date",
-                        "valNumis", "Ref", "Etat",
-                        "Matiere" };
-                TableAjouter.afficher("Collection de Monnaies", enTete);
-
-                // Appel à la fonctionnalité de la classe IActionsOutil
-                //// ArrayList<Outil> outils = controleurOutil.CtrO_GetAllOutils();
-                // Faites quelque chose avec la liste d'outils (par exemple, les afficher)
+                new TableAjouterMonnaie(controleurMonnaie);
             }
         });
         panel.add(ajoutermonnaie);
 
-        JButton btnNewButton_2 = new JButton("Supprimer Monnaie");
-        panel.add(btnNewButton_2);
+        JButton supprimermonnaie = new JButton("Supprimer Monnaie");
+        supprimermonnaie.setFont(new Font("Tahoma", Font.BOLD, 13));
+        supprimermonnaie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TableSupprimerMonnaie(controleurMonnaie);
+            }
+        });
+        panel.add(supprimermonnaie);
+
+        JButton cherchermonnaie = new JButton("Chercher Monnaie");
+        cherchermonnaie.setFont(new Font("Tahoma", Font.BOLD, 13));
+        cherchermonnaie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TableChercherMonnaie(controleurMonnaie);
+            }
+        });
+        panel.add(cherchermonnaie);
 
         JButton listerlivre = new JButton("Lister Livre");
+        listerlivre.setFont(new Font("Tahoma", Font.BOLD, 13));
         listerlivre.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Livre> livres = controleurLivre.CtrL_GetAllLivres();
@@ -153,13 +152,35 @@ public class Interface {
         });
         panel.add(listerlivre);
 
-        JButton modifierlivre = new JButton("Ajouter Livre");
-        panel.add(modifierlivre);
+        JButton ajouterlivre = new JButton("Ajouter Livre");
+        ajouterlivre.setFont(new Font("Tahoma", Font.BOLD, 13));
+        ajouterlivre.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TableAjouterLivre(controleurLivre);
+            }
+        });
+        panel.add(ajouterlivre);
 
-        JButton btnNewButton_5 = new JButton("Supprimer Livre");
-        panel.add(btnNewButton_5);
+        JButton supprimerlivre = new JButton("Supprimer Livre");
+        supprimerlivre.setFont(new Font("Tahoma", Font.BOLD, 13));
+        supprimerlivre.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TableSupprimerLivre(controleurLivre);
+            }
+        });
+        panel.add(supprimerlivre);
+
+        JButton chercherlivre = new JButton("Chercher Livre");
+        chercherlivre.setFont(new Font("Tahoma", Font.BOLD, 13));
+        chercherlivre.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TableChercherLivre(controleurLivre);
+            }
+        });
+        panel.add(chercherlivre);
 
         JButton listeroutil = new JButton("Lister Outil");
+        listeroutil.setFont(new Font("Tahoma", Font.BOLD, 13));
         listeroutil.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Outil> outils = controleurOutil.CtrO_GetAllOutils();
@@ -192,26 +213,56 @@ public class Interface {
         });
         panel.add(listeroutil);
 
-        JButton btnNewButton_7 = new JButton("Ajouter Outil");
-        panel.add(btnNewButton_7);
+        JButton ajouteroutil = new JButton("Ajouter Outil");
+        ajouteroutil.setFont(new Font("Tahoma", Font.BOLD, 13));
+        ajouteroutil.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TableAjouterOutil(controleurOutil);
+            }
+        });
+        panel.add(ajouteroutil);
 
-        JButton btnNewButton_8 = new JButton("Supprimer Outil");
-        panel.add(btnNewButton_8);
+        JButton supprimeroutil = new JButton("Supprimer Outil");
+        supprimeroutil.setFont(new Font("Tahoma", Font.BOLD, 13));
+        supprimeroutil.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TableSupprimerOutil(controleurOutil);
+            }
+        });
+        panel.add(supprimeroutil);
 
-        JButton button = new JButton("Quitter");
-        panel.add(button);
+        JButton chercheroutil = new JButton("Chercher Outil");
+        chercheroutil.setFont(new Font("Tahoma", Font.BOLD, 13));
+        chercheroutil.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TableChercherOutil(controleurOutil);
+            }
+        });
+        panel.add(chercheroutil);
 
-        JLabel lblNewLabel = new JLabel("Collection d'objets prehistoriques");
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+        JButton quitter = new JButton("Quitter");
+        quitter.setFont(new Font("Tahoma", Font.BOLD, 13));
+        panel.add(quitter);
+        quitter.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
+        JLabel lblNewLabel = new JLabel("Collection dans l'Antiquité");
+        lblNewLabel.setBackground(new Color(255, 204, 153));
+        lblNewLabel.setForeground(new Color(0, 0, 0));
+        lblNewLabel.setFont(new Font("Georgia", Font.BOLD, 26));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lblNewLabel, BorderLayout.NORTH);
 
         JLabel image = new JLabel("");
+        image.setBackground(new Color(255, 204, 153));
         image.setIcon(new ImageIcon(
-                "C:\\Users\\ahgue\\OneDrive\\Documents\\GitHub\\Projet_Appli_bureau\\src\\main\\java\\edu\\java\\dao\\controleurs\\GestionInterface\\pieceor.jpg"));
+                "C:\\Users\\ahgue\\OneDrive\\Bureau\\Projet Final Appli Bureau\\Projet_Appli_bureau\\src\\main\\java\\edu\\java\\dao\\controleurs\\GestionInterface\\photos\\School_of_Athens.jpg"));
         contentPane.add(image, BorderLayout.CENTER);
 
-        JLabel lblNewLabel_2 = new JLabel("Choisir Votre Choix");
+        JLabel lblNewLabel_2 = new JLabel("Copie");
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lblNewLabel_2, BorderLayout.SOUTH);
     }

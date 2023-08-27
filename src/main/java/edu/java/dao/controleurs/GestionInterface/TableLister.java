@@ -22,7 +22,7 @@ public class TableLister {
         frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(255, 128, 64));
+        panel.setBackground(new Color(255, 204, 153));
         frame.getContentPane().add(panel, BorderLayout.NORTH);
         JLabel lblTitre = new JLabel(titre);
         lblTitre.setFont(new Font("Serif", Font.BOLD, 25));
@@ -32,6 +32,9 @@ public class TableLister {
         JTableHeader header = table.getTableHeader();
         header.setFont(new Font("Dialog", Font.BOLD, 18));
         JScrollPane scroll = new JScrollPane(table);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); // Ajout de la barre de défilement
+                                                                                      // horizontale
+
         JPanel sud = new JPanel();
         sud.setLayout(new GridLayout(2, 1));
         JPanel panelLabel = new JPanel();
@@ -39,9 +42,9 @@ public class TableLister {
         label.setFont(new Font("Serif", Font.BOLD, 25));
         panelLabel.add(label);
         sud.add(panelLabel);
-        panelLabel.setBackground(new Color(255, 128, 64));
+        panelLabel.setBackground(new Color(255, 204, 153));
         JPanel panelBtn = new JPanel();
-        panelBtn.setBackground(new Color(255, 128, 64));
+        panelBtn.setBackground(new Color(255, 204, 153));
         sud.setBackground(Color.ORANGE);
 
         JButton retour = new JButton("Retour");

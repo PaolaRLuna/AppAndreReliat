@@ -25,7 +25,7 @@ public class DaoMonnaie implements IMonnaieDao {
     private static final String GET_BY_ID = "SELECT * FROM monnaie WHERE id_class=?";
     private static final String GET_BY_MATIERE = "SELECT * FROM monnaie WHERE matiere=?";
     private static final String GET_BY_EMPEREUR = "SELECT * FROM monnaie WHERE empereur=?";
-    private static final String ENREGISTRER = "INSERT INTO monnaie VALUES(?,?, ?, ?, ?,?,?,?,?,?,?,?,?)";
+    private static final String ENREGISTRER = "INSERT INTO monnaie VALUES(?,?, ?, ?, ?,?,?,?,?,?,?,?,?, ?)";
     private static final String MODIFIER = "UPDATE monnaie SET id_class=?, format=?, diametre=?, empereur=?, classement=?, "
             + "regne=?, leg_avers=?, leg_revers=?, ref=?, matiere=?,  etat=?, acquit=?, lieu_date=?, valnumis=? WHERE id_class=?";
 
@@ -56,6 +56,7 @@ public class DaoMonnaie implements IMonnaieDao {
         PreparedStatement stmt = null;
         try { // requete est dans enregistrer, pour obtenir la clé qui a été generé on utilise
               // return_generated keys
+            conn = DriverManager.getConnection(URL_BD, USAGER, PASS);
             stmt = conn.prepareStatement(ENREGISTRER, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, piece.getIdclass());
             stmt.setString(2, piece.getFormat());

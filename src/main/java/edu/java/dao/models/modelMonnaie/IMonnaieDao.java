@@ -13,9 +13,9 @@ public interface IMonnaieDao {
 
     public Monnaie MdlM_GetById(int idclass);
 
-    public Monnaie MdlM_GetByMatiere(String matiere);
+    public List<Monnaie> MdlM_GetByMatiere(String matiere);
 
-    public Monnaie MdlM_GetByEmpereur(String empereur);
+    public List<Monnaie> MdlM_GetByEmpereur(String empereur);
 
     // Update
     public int MdlM_Modifier(Monnaie piece);

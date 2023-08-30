@@ -23,10 +23,10 @@ public class DaoMonnaie implements IMonnaieDao {
     private static final String SUPPRIMER = "DELETE FROM monnaie WHERE id_class=?";
     private static final String GET_ALL = "SELECT * FROM monnaie ORDER BY id_class";
     private static final String GET_BY_ID = "SELECT * FROM monnaie WHERE id_class=?";
-    private static final String GET_BY_MATIERE = "SELECT * FROM monnaie WHERE matiere=?";
-    private static final String GET_BY_EMPEREUR = "SELECT * FROM monnaie WHERE empereur=?";
-    private static final String ENREGISTRER = "INSERT INTO monnaie VALUES(?,?, ?, ?, ?,?,?,?,?,?,?,?,?, ?)";
-    private static final String MODIFIER = "UPDATE monnaie SET id_class=?, format=?, diametre=?, empereur=?, classement=?, "
+    private static final String GET_BY_MATIERE = "SELECT * FROM monnaie WHERE upper(matiere) LIKE CONCAT ( '%',?,'%')";
+    private static final String GET_BY_EMPEREUR = "SELECT * FROM monnaie WHERE upper(empereur)=?";
+    private static final String ENREGISTRER = "INSERT INTO monnaie VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String MODIFIER = "UPDATE monnaie SET id_class=?, format=?, diametre=?, empereur=?, classement=?,"
             + "regne=?, leg_avers=?, leg_revers=?, ref=?, matiere=?,  etat=?, acquit=?, lieu_date=?, valnumis=? WHERE id_class=?";
 
     // Singleton de connexion à la BD
@@ -171,7 +171,8 @@ public class DaoMonnaie implements IMonnaieDao {
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Monnaie MdlM_GetByMatiere(String nom_matiere) {
+    public List<Monnaie> MdlM_GetByMatiere(String nom_matiere) {
+        List<Monnaie> listeMonnaies = new ArrayList<Monnaie>();
         PreparedStatement stmt = null;
 
         try {
@@ -180,7 +181,7 @@ public class DaoMonnaie implements IMonnaieDao {
 
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Monnaie piece = new Monnaie();
                 piece.setIdclass(rs.getInt("id_class"));
                 piece.setFormat(rs.getString("format"));
@@ -196,22 +197,22 @@ public class DaoMonnaie implements IMonnaieDao {
                 piece.setAcquit(rs.getString("acquit"));
                 piece.setLieu_date(rs.getString("lieu_date"));
                 piece.setvalNumis(rs.getString("valnumis"));
-
-                return piece;
-            } else {
-                return null;
+                listeMonnaies.add(piece);
             }
         } catch (SQLException e) {
-            // e.printStackTrace();
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            // throw new RuntimeException(e);
+            return null;
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
         }
+        return (ArrayList<Monnaie>) listeMonnaies;
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Monnaie MdlM_GetByEmpereur(String zone) {
+    public List<Monnaie> MdlM_GetByEmpereur(String zone) {
+        List<Monnaie> listeMonnaies = new ArrayList<Monnaie>();
         PreparedStatement stmt = null;
 
         try {
@@ -220,7 +221,7 @@ public class DaoMonnaie implements IMonnaieDao {
 
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Monnaie piece = new Monnaie();
                 piece.setIdclass(rs.getInt("id_class"));
                 piece.setFormat(rs.getString("format"));
@@ -236,18 +237,18 @@ public class DaoMonnaie implements IMonnaieDao {
                 piece.setAcquit(rs.getString("acquit"));
                 piece.setLieu_date(rs.getString("lieu_date"));
                 piece.setvalNumis(rs.getString("valnumis"));
+                listeMonnaies.add(piece);
 
-                return piece;
-            } else {
-                return null;
             }
         } catch (SQLException e) {
-            // e.printStackTrace();
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            // throw new RuntimeException(e);
+            return null;
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
         }
+        return (ArrayList<Monnaie>) listeMonnaies;
     }
 
     // Update, faudrat avant appeler MdlF_GetById(idf) pour obtenir
@@ -294,6 +295,7 @@ public class DaoMonnaie implements IMonnaieDao {
             stmt.setInt(1, idref);
 
             reponse = stmt.executeUpdate();
+            // System.out.println(reponse);
         } catch (SQLException e) {
             // e.printStackTrace();
             // throw new RuntimeException(e);

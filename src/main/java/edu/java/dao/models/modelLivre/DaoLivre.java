@@ -23,12 +23,14 @@ public class DaoLivre implements ILivreDao {
     private static final String SUPPRIMER = "DELETE FROM livres WHERE idl=?";
     private static final String GET_ALL = "SELECT * FROM livres ORDER BY idl";
     private static final String GET_BY_NUM = "SELECT * FROM livres WHERE num=?";
-    private static final String GET_BY_TITRE = "SELECT * FROM livres WHERE upper(titre) LIKE =?";
+    private static final String GET_BY_TITRE = "SELECT * FROM livres WHERE upper(titre) LIKE CONCAT ( '%',?,'%')";
     private static final String GET_BY_AUTEUR = "SELECT * FROM livres WHERE auteur=?";
     private static final String ENREGISTRER = "INSERT INTO livres VALUES(0,?, ?, ?, ?,?,?,?,?,?,?,?,?)";
     private static final String MODIFIER = "UPDATE livres SET num=?, titre=?, sousTitre=?, auteur=?, editeur=?, "
             + "tome=?, annee=?, support=?, rangement=?, empereurs=?, collection=?, categorie = ? WHERE idl=?";
 
+    // link to prepared statement
+    // https://stackoverflow.com/questions/8247970/using-like-wildcard-in-prepared-statement
     // Singleton de connexion à la BD
     // getConnexion() est devenu une zonne critique.
     // Pour ne pas avoir deux processus légers (threads) qui
@@ -81,7 +83,8 @@ public class DaoLivre implements ILivreDao {
             }
             return "Livre bien enregistré";
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return null;
+            //throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
@@ -117,8 +120,9 @@ public class DaoLivre implements ILivreDao {
                 listeLivres.add(livre);
             }
         } catch (SQLException e) {
-            // e.printStackTrace();
-            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return null;
+            // System.out.println(e.getMessage());
             // throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
@@ -132,7 +136,6 @@ public class DaoLivre implements ILivreDao {
         PreparedStatement stmt = null;
 
         try {
-
             stmt = conn.prepareStatement(GET_BY_NUM);
             stmt.setInt(2, num);
 
@@ -152,14 +155,12 @@ public class DaoLivre implements ILivreDao {
                 livre.setEmpereurs(rs.getString("empereurs"));
                 livre.setCollection(rs.getString("collection"));
                 livre.setCategorie(rs.getString("categorie"));
-
-                return livre;
-            } else {
-                return null;
             }
+            return livre;
         } catch (SQLException e) {
-            // e.printStackTrace();
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            // throw new RuntimeException(e);
+            return null;
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
@@ -167,7 +168,8 @@ public class DaoLivre implements ILivreDao {
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Livre MdlL_GetByTitre(String titre) {
+    public List<Livre> MdlL_GetByTitre(String titre) {
+        List<Livre> listeLivres = new ArrayList<Livre>();
         PreparedStatement stmt = null;
 
         try {
@@ -176,7 +178,7 @@ public class DaoLivre implements ILivreDao {
 
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Livre livre = new Livre();
                 livre.setIdl(rs.getInt("idl"));
                 livre.setNum(rs.getInt("num"));
@@ -191,22 +193,22 @@ public class DaoLivre implements ILivreDao {
                 livre.setEmpereurs(rs.getString("empereurs"));
                 livre.setCollection(rs.getString("collection"));
                 livre.setCategorie(rs.getString("categorie"));
-
-                return livre;
-            } else {
-                return null;
+                listeLivres.add(livre);
             }
         } catch (SQLException e) {
-            // e.printStackTrace();
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
+            // throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
         }
+        return (ArrayList<Livre>) listeLivres;
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Livre MdlL_GetByAuteur(String auteur) {
+    public List<Livre> MdlL_GetByAuteur(String auteur) {
+        List<Livre> listeLivres = new ArrayList<Livre>();
         PreparedStatement stmt = null;
 
         try {
@@ -215,7 +217,7 @@ public class DaoLivre implements ILivreDao {
 
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Livre livre = new Livre();
                 livre.setIdl(rs.getInt("idl"));
                 livre.setNum(rs.getInt("num"));
@@ -230,18 +232,17 @@ public class DaoLivre implements ILivreDao {
                 livre.setEmpereurs(rs.getString("empereurs"));
                 livre.setCollection(rs.getString("collection"));
                 livre.setCategorie(rs.getString("categorie"));
-
-                return livre;
-            } else {
-                return null;
+                listeLivres.add(livre);
             }
         } catch (SQLException e) {
-            // e.printStackTrace();
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            // throw new RuntimeException(e);
+            return null;
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
         }
+        return (ArrayList<Livre>) listeLivres;
     }
 
     // Update, faudrat avant appeler MdlF_GetById(idf) pour obtenir

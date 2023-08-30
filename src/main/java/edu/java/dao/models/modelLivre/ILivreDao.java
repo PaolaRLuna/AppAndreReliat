@@ -15,7 +15,7 @@ public interface ILivreDao {
 
     public List<Livre> MdlL_GetByTitre(String titre);
 
-    public Livre MdlL_GetByAuteur(String auteur);
+    public List<Livre> MdlL_GetByAuteur(String auteur);
 
     // Update
     public int MdlL_Modifier(Livre leLivre);

@@ -79,9 +79,14 @@ public class TableSupprimerMonnaie {
 		btnNewButton_Supprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int idClass = Integer.parseInt(texte_Idclass.getText());
-				controleurMonnaie.CtrM_Enlever(idClass);
-				JOptionPane.showMessageDialog(null, "Monnaie Supprimé");
-				frame.dispose();
+				int reponse = controleurMonnaie.CtrM_Enlever(idClass);
+				if (reponse != -1){
+					JOptionPane.showMessageDialog(null, "Monnaie pas retrouvé");
+					texte_Idclass.setText("");
+				} else {
+					JOptionPane.showMessageDialog(null, "Monnaie Supprimé");
+					frame.dispose();
+				}
 			}
 		});
 		btnNewButton_Supprimer.setBounds(412, 434, 139, 31);

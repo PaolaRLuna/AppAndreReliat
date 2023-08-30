@@ -1,6 +1,7 @@
 package edu.java.dao.controleurs.controleurMonnaie;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.java.dao.models.modelMonnaie.Monnaie;
 
@@ -15,9 +16,9 @@ public interface IActionsMonnaie {
 
     public Monnaie CtrM_GetMonnaieById(int idf);
 
-    public Monnaie CtrM_GetMonnaieByMatiere(String matiere);
+    public List<Monnaie> CtrM_GetMonnaieByMatiere(String matiere);
 
-    public Monnaie CtrM_GetMonnaieByEmpereur(String empereur);
+    public List<Monnaie> CtrM_GetMonnaieByEmpereur(String empereur);
     // // Update
     public int CtrM_Modifier(Monnaie piece);
 

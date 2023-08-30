@@ -48,12 +48,12 @@ public class ControleurOutil implements IActionsOutil {
         return Dao_Instance.MdlO_GetById(idref);
     };
 
-    public Outil CtrO_GetOutilByTitre_ou_Matiere(String titre_ou_matiere) {
-        return Dao_Instance.MdlO_GetByNom_ou_Matiere(titre_ou_matiere);
+    public List<Outil> CtrO_GetOutilByTitre_ou_Matiere(String titre_ou_matiere) {
+        return (List<Outil>) Dao_Instance.MdlO_GetByNom_ou_Matiere(titre_ou_matiere);
     };
 
-    public Outil CtrO_GetOutilByZone(String zone) {
-        return Dao_Instance.MdlO_GetByZone(zone);
+    public List<Outil> CtrO_GetOutilByZone(String zone) {
+        return (List<Outil>) Dao_Instance.MdlO_GetByZone(zone);
     };
 
     public int CtrO_Modifier(Outil loutil) {

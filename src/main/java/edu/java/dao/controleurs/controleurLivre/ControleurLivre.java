@@ -2,6 +2,7 @@
 package edu.java.dao.controleurs.controleurLivre;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.java.dao.models.modelLivre.DaoLivre;
 import edu.java.dao.models.modelLivre.Livre;
@@ -48,11 +49,11 @@ public class ControleurLivre implements IActionsLivre {
         return Dao_Instance.MdlL_GetByNum(idl);
     };
 
-    public Livre CtrL_GetLivreByTitre(String titre) {
+    public List<Livre> CtrL_GetLivreByTitre(String titre) {
         return Dao_Instance.MdlL_GetByTitre(titre);
     };
 
-    public Livre CtrL_GetLivreByAuteur(String auteur) {
+    public List<Livre> CtrL_GetLivreByAuteur(String auteur) {
         return Dao_Instance.MdlL_GetByAuteur(auteur);
     };
 

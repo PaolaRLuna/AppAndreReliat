@@ -1,6 +1,7 @@
 package edu.java.dao.controleurs.controleurLivre;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.java.dao.models.modelLivre.Livre;
 
@@ -15,9 +16,9 @@ public interface IActionsLivre {
 
     public Livre CtrL_GetLivreById(int idl);
 
-    public Livre CtrL_GetLivreByTitre(String titre);
+    public List<Livre> CtrL_GetLivreByTitre(String titre);
 
-    public Livre CtrL_GetLivreByAuteur(String auteur);
+    public List<Livre> CtrL_GetLivreByAuteur(String auteur);
 
     // // Update
     public int CtrL_Modifier(Livre livre);

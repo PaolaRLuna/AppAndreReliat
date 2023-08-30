@@ -2,6 +2,7 @@
 package edu.java.dao.controleurs.controleurMonnaie;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 
@@ -49,11 +50,11 @@ public class ControleurMonnaie implements IActionsMonnaie {
         return Dao_Instance.MdlM_GetById(idclass);
     };
 
-    public Monnaie CtrM_GetMonnaieByMatiere(String matiere) {
+    public List<Monnaie> CtrM_GetMonnaieByMatiere(String matiere) {
         return Dao_Instance.MdlM_GetByMatiere(matiere);
     };
 
-    public Monnaie CtrM_GetMonnaieByEmpereur(String empereur) {
+    public List<Monnaie> CtrM_GetMonnaieByEmpereur(String empereur) {
         return Dao_Instance.MdlM_GetByEmpereur(empereur);
     };
 

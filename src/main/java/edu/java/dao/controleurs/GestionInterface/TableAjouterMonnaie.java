@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -132,6 +133,8 @@ public class TableAjouterMonnaie {
 						regne, legende_avers, legende_revers, ref, matiere, etat,
 						acquit, lieu_date, valvumis);
 				controleurMonnaie.CtrM_Enregistrer(m);
+				JOptionPane.showMessageDialog(null, "Monnaie Ajoutée");
+				frame.dispose();
 			}
 		});
 		btnNewButton_Ajouter.setBounds(345, 501, 108, 28);

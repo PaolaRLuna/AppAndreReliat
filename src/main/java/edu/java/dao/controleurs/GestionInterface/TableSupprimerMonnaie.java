@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -79,6 +80,8 @@ public class TableSupprimerMonnaie {
 			public void actionPerformed(ActionEvent e) {
 				int idClass = Integer.parseInt(texte_Idclass.getText());
 				controleurMonnaie.CtrM_Enlever(idClass);
+				JOptionPane.showMessageDialog(null, "Monnaie Supprimé");
+				frame.dispose();
 			}
 		});
 		btnNewButton_Supprimer.setBounds(412, 434, 139, 31);

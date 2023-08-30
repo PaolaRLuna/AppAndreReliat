@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -124,6 +125,8 @@ public class TableAjouterLivre {
 				Livre l = new Livre(idl, num, titre, sousTitre, auteur, editeur,
 						tome, annee, support, rangement, empereurs, collection, categorie);
 				controleurLivre.CtrL_Enregistrer(l);
+				JOptionPane.showMessageDialog(null, "Livre Ajouté");
+				frame.dispose();
 			}
 		});
 		btnNewButton_Ajouter.setBounds(545, 553, 105, 37);

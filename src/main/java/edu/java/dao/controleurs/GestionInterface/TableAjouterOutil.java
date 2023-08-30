@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -174,6 +175,8 @@ public class TableAjouterOutil {
 						ref_couleur_pat, couleur_patref_ral, retouche_sigmoidales, retouches_cote_fine,
 						date_decouverte, info_secondaire, zone_ramassage, remarquable, num_reference);
 				controleurOutil.CtrO_Enregistrer(o);
+				JOptionPane.showMessageDialog(null, "Outil Ajouté");
+				frame.dispose();
 			}
 		});
 		btnNewButton_Ajouter.setBounds(323, 627, 103, 21);

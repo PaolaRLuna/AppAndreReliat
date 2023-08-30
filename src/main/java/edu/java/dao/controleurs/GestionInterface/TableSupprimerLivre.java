@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -79,8 +80,11 @@ public class TableSupprimerLivre {
 			public void actionPerformed(ActionEvent e) {
 				int idl = Integer.parseInt(texte_idl.getText());
 				controleurLivre.CtrL_Enlever(idl);
+				JOptionPane.showMessageDialog(null, "Livre Supprimé");
+				frame.dispose();
 			}
 		});
+
 		btnNewButton_Supprimer.setBounds(403, 387, 132, 31);
 		panel.add(btnNewButton_Supprimer);
 

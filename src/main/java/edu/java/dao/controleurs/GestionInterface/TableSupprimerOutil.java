@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -79,6 +80,8 @@ public class TableSupprimerOutil {
 			public void actionPerformed(ActionEvent e) {
 				int idf = Integer.parseInt(texte_idf.getText());
 				controleurOutil.CtrO_Enlever(idf);
+				JOptionPane.showMessageDialog(null, "Outil Supprimé");
+				frame.dispose();
 			}
 		});
 		btnNewButton_Supprimer.setBounds(381, 446, 132, 34);

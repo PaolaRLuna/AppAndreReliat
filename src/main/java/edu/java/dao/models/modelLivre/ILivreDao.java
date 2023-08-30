@@ -13,7 +13,7 @@ public interface ILivreDao {
 
     public Livre MdlL_GetByNum(int num);
 
-    public Livre MdlL_GetByTitre(String titre);
+    public List<Livre> MdlL_GetByTitre(String titre);
 
     public Livre MdlL_GetByAuteur(String auteur);
 

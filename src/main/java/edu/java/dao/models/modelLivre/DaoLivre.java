@@ -23,7 +23,7 @@ public class DaoLivre implements ILivreDao {
     private static final String SUPPRIMER = "DELETE FROM livres WHERE idl=?";
     private static final String GET_ALL = "SELECT * FROM livres ORDER BY idl";
     private static final String GET_BY_NUM = "SELECT * FROM livres WHERE num=?";
-    private static final String GET_BY_TITRE = "SELECT * FROM livres WHERE titre=?";
+    private static final String GET_BY_TITRE = "SELECT * FROM livres WHERE upper(titre) LIKE =?";
     private static final String GET_BY_AUTEUR = "SELECT * FROM livres WHERE auteur=?";
     private static final String ENREGISTRER = "INSERT INTO livres VALUES(0,?, ?, ?, ?,?,?,?,?,?,?,?,?)";
     private static final String MODIFIER = "UPDATE livres SET num=?, titre=?, sousTitre=?, auteur=?, editeur=?, "

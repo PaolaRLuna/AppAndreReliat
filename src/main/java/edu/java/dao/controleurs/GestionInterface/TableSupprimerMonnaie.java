@@ -80,7 +80,7 @@ public class TableSupprimerMonnaie {
 			public void actionPerformed(ActionEvent e) {
 				int idClass = Integer.parseInt(texte_Idclass.getText());
 				int reponse = controleurMonnaie.CtrM_Enlever(idClass);
-				if (reponse != -1){
+				if (reponse != -1) {
 					JOptionPane.showMessageDialog(null, "Monnaie pas retrouvé");
 					texte_Idclass.setText("");
 				} else {

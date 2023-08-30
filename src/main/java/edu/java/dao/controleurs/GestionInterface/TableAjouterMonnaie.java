@@ -132,9 +132,15 @@ public class TableAjouterMonnaie {
 				Monnaie m = new Monnaie(idClass, format, diametre, empereur, classement,
 						regne, legende_avers, legende_revers, ref, matiere, etat,
 						acquit, lieu_date, valvumis);
-				controleurMonnaie.CtrM_Enregistrer(m);
-				JOptionPane.showMessageDialog(null, "Monnaie Ajoutée");
-				frame.dispose();
+
+				String reponse = controleurMonnaie.CtrM_Enregistrer(m);
+				if (reponse != null) {
+					JOptionPane.showMessageDialog(null, "Monnaie pas retrouvé");
+					texte_Idclass.setText("");
+				} else {
+					JOptionPane.showMessageDialog(null, "Monnaie Supprimé");
+					frame.dispose();
+				}
 			}
 		});
 		btnNewButton_Ajouter.setBounds(345, 501, 108, 28);

@@ -84,7 +84,7 @@ public class DaoMonnaie implements IMonnaieDao {
             return "Monnaie bien enregistré";
         } catch (SQLException e) {
             return null;
-            //throw new RuntimeException(e);
+            // throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);

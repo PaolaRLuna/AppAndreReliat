@@ -23,8 +23,8 @@ public class DaoOutil implements IOutilDao {
     private static final String SUPPRIMER = "DELETE FROM outils WHERE idref=?";
     private static final String GET_ALL = "SELECT * FROM outils ORDER BY idref";
     private static final String GET_BY_ID = "SELECT * FROM outils WHERE idref=?";
-    private static final String GET_BY_NOM_OU_MATIERE = "SELECT * FROM outils WHERE appellation=? OR matiere=?";
-    private static final String GET_BY_ZONE = "SELECT * FROM outils WHERE zone_ramassage=?";
+    private static final String GET_BY_NOM_OU_MATIERE = "SELECT * FROM outils WHERE upper(appellation)=? OR upper(matiere)=?";
+    private static final String GET_BY_ZONE = "SELECT * FROM outils WHERE zone_ramassage LIKE CONCAT ( '%',?,'%')";
     private static final String ENREGISTRER = "INSERT INTO outils VALUES(0,?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String MODIFIER = "UPDATE outils SET appelation=?, qualification_forme=?, forme_typ=?, forme_atyp=?, obs_aspect=?, "
             + "etat_conservation=?, ro_naturel=?, ro_amenage=?, hauteur_reele_mm=?, hauteur_suppose_mm=?, largeur_mm=?, eppaisseur_mm = ?,"
@@ -209,7 +209,8 @@ public class DaoOutil implements IOutilDao {
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Outil MdlO_GetByNom_ou_Matiere(String nom_matiere) {
+    public List<Outil> MdlO_GetByNom_ou_Matiere(String nom_matiere) {
+        List<Outil> listeOutils = new ArrayList<Outil>();
         PreparedStatement stmt = null;
 
         try {
@@ -218,7 +219,7 @@ public class DaoOutil implements IOutilDao {
 
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Outil outil = new Outil();
                 outil.setIdref(rs.getInt("idref"));
                 outil.setAppellation(rs.getString("appelation"));
@@ -246,22 +247,22 @@ public class DaoOutil implements IOutilDao {
                 outil.setZone_ramassage(rs.getString("zone_ramassage"));
                 outil.setRemarquable(rs.getString("remarquable"));
                 outil.setNum_reference(rs.getDouble("num_reference"));
-
-                return outil;
-            } else {
-                return null;
+                listeOutils.add(outil);
             }
         } catch (SQLException e) {
-            // e.printStackTrace();
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            // throw new RuntimeException(e);
+            return null;
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
         }
+        return (ArrayList<Outil>) listeOutils;
     }
 
     // GET BY APPELLATION OU MATIERE
-    public Outil MdlO_GetByZone(String zone) {
+    public List<Outil> MdlO_GetByZone(String zone) {
+        List<Outil> listeOutils = new ArrayList<Outil>();
         PreparedStatement stmt = null;
 
         try {
@@ -270,7 +271,7 @@ public class DaoOutil implements IOutilDao {
 
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Outil outil = new Outil();
                 outil.setIdref(rs.getInt("idref"));
                 outil.setAppellation(rs.getString("appelation"));
@@ -298,18 +299,17 @@ public class DaoOutil implements IOutilDao {
                 outil.setZone_ramassage(rs.getString("zone_ramassage"));
                 outil.setRemarquable(rs.getString("remarquable"));
                 outil.setNum_reference(rs.getDouble("num_reference"));
-
-                return outil;
-            } else {
-                return null;
+                listeOutils.add(outil);
             }
         } catch (SQLException e) {
-            // e.printStackTrace();
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            // throw new RuntimeException(e);
+            return null;
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);
         }
+        return (ArrayList<Outil>) listeOutils;
     }
 
     // Update, faudrat avant appeler MdlF_GetById(idf) pour obtenir

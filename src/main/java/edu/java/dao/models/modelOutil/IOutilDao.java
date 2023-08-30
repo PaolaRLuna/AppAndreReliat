@@ -13,9 +13,9 @@ public interface IOutilDao {
 
     public Outil MdlO_GetById(int idref);
 
-    public Outil MdlO_GetByNom_ou_Matiere(String nom_matiere);
+    public List<Outil> MdlO_GetByNom_ou_Matiere(String nom_matiere);
 
-    public Outil MdlO_GetByZone(String zone);
+    public List<Outil> MdlO_GetByZone(String zone);
     
     // Update
     public int MdlO_Modifier(Outil loutil);

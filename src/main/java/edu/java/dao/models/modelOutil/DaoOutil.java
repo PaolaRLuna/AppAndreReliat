@@ -96,7 +96,8 @@ public class DaoOutil implements IOutilDao {
             }
             return "Outil bien enregistré";
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return null;
+            //throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);

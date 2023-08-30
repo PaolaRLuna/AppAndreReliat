@@ -84,7 +84,7 @@ public class DaoLivre implements ILivreDao {
             return "Livre bien enregistré";
         } catch (SQLException e) {
             return null;
-            //throw new RuntimeException(e);
+            // throw new RuntimeException(e);
         } finally {
             MdlO_Fermer(stmt);
             MdlO_Fermer(conn);

@@ -81,16 +81,17 @@ public class TableSupprimerMonnaie {
 				int idClass = Integer.parseInt(texte_Idclass.getText());
 				int reponse = controleurMonnaie.CtrM_Enlever(idClass);
 				if (reponse != -1) {
-					JOptionPane.showMessageDialog(null, "Monnaie pas retrouvé");
-					texte_Idclass.setText("");
-				} else {
 					JOptionPane.showMessageDialog(null, "Monnaie Supprimé");
 					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Monnaie pas retrouvé");
+					texte_Idclass.setText("");
 				}
 			}
 		});
 		btnNewButton_Supprimer.setBounds(412, 434, 139, 31);
 		panel.add(btnNewButton_Supprimer);
+		;
 
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setFont(new Font("Tahoma", Font.BOLD, 18));

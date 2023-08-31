@@ -174,11 +174,42 @@ public class TableAjouterOutil {
 						largeur_mm, epaisseur_mm, masse_gr, matiere, couleur_int, intensite_pat,
 						ref_couleur_pat, couleur_patref_ral, retouche_sigmoidales, retouches_cote_fine,
 						date_decouverte, info_secondaire, zone_ramassage, remarquable, num_reference);
-				controleurOutil.CtrO_Enregistrer(o);
-				JOptionPane.showMessageDialog(null, "Outil Ajouté");
-				frame.dispose();
+				String reponse = controleurOutil.CtrO_Enregistrer(o);
+				if (reponse != null) {
+					JOptionPane.showMessageDialog(null, "Monnaie ajoutée");
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Monnaie existe dèjà");
+					text_idref.setText("");
+					text_appellation.setText("");
+					text_qualification_forme.setText("");
+					text_forme_typ.setText("");
+					text_forme_atyp.setText("");
+					text_obs_aspect.setText("");
+					text_etat_conserv.setText("");
+					text_ro_naturel.setText("");
+					text_ro_amenage.setText("");
+					text_hauteur_reelemm.setText("");
+					text_hauteur_supposemm.setText("");
+					text_largeur_mm.setText("");
+					text_epaisseur_mm.setText("");
+					text_masse_gr.setText("");
+					text_matiere.setText("");
+					text_couleur_int.setText("");
+					text_intensite_pat.setText("");
+					text_ref_couleur_pat.setText("");
+					text_couleur_patref_ral.setText("");
+					text_retouche_sigmoidales.setText("");
+					text_retouches_cote_fine.setText("");
+					text_date_decouverte.setText("");
+					text_info_secondaire.setText("");
+					text_zone_ramassage.setText("");
+					text_remarquable.setText("");
+					text_num_reference.setText("");
+				}
 			}
 		});
+
 		btnNewButton_Ajouter.setBounds(323, 627, 103, 21);
 		titre.add(btnNewButton_Ajouter);
 

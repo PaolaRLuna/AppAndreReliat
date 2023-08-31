@@ -79,12 +79,17 @@ public class TableSupprimerLivre {
 		btnNewButton_Supprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int idl = Integer.parseInt(texte_idl.getText());
-				controleurLivre.CtrL_Enlever(idl);
-				JOptionPane.showMessageDialog(null, "Livre Supprimé");
-				frame.dispose();
+				int reponse = controleurLivre.CtrL_Enlever(idl);
+				System.out.println(reponse);
+				if (reponse != -1) {
+					JOptionPane.showMessageDialog(null, "Livre Supprimé");
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Livre pas retrouvé");
+					texte_idl.setText("");
+				}
 			}
 		});
-
 		btnNewButton_Supprimer.setBounds(403, 387, 132, 31);
 		panel.add(btnNewButton_Supprimer);
 

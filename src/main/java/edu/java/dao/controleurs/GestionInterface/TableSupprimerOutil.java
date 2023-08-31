@@ -79,9 +79,14 @@ public class TableSupprimerOutil {
 		btnNewButton_Supprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int idf = Integer.parseInt(texte_idf.getText());
-				controleurOutil.CtrO_Enlever(idf);
-				JOptionPane.showMessageDialog(null, "Outil Supprimé");
-				frame.dispose();
+				int reponse = controleurOutil.CtrO_Enlever(idf);
+				if (reponse != -1) {
+					JOptionPane.showMessageDialog(null, "Outil Supprimé");
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Outil pas retrouvé");
+					texte_idf.setText("");
+				}
 			}
 		});
 		btnNewButton_Supprimer.setBounds(381, 446, 132, 34);

@@ -25,6 +25,8 @@ public class ControleurOutil implements IActionsOutil {
             return CtrO_Instance;//
         } catch (Exception e) {
             // e.printStackTrace();
+            System.out.println(e.getMessage());
+            // return CtrO_Instance;
             throw new RuntimeException(e);
         }
     }
@@ -48,10 +50,12 @@ public class ControleurOutil implements IActionsOutil {
         return Dao_Instance.MdlO_GetById(idref);
     };
 
+    @SuppressWarnings("unchecked")
     public List<Outil> CtrO_GetOutilByTitre_ou_Matiere(String titre_ou_matiere) {
         return (List<Outil>) Dao_Instance.MdlO_GetByNom_ou_Matiere(titre_ou_matiere);
     };
 
+    @SuppressWarnings("unchecked")
     public List<Outil> CtrO_GetOutilByZone(String zone) {
         return (List<Outil>) Dao_Instance.MdlO_GetByZone(zone);
     };

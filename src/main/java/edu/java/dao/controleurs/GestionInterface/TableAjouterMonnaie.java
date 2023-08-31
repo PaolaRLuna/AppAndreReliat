@@ -132,14 +132,26 @@ public class TableAjouterMonnaie {
 				Monnaie m = new Monnaie(idClass, format, diametre, empereur, classement,
 						regne, legende_avers, legende_revers, ref, matiere, etat,
 						acquit, lieu_date, valvumis);
-
 				String reponse = controleurMonnaie.CtrM_Enregistrer(m);
 				if (reponse != null) {
-					JOptionPane.showMessageDialog(null, "Monnaie pas retrouvé");
-					texte_Idclass.setText("");
-				} else {
-					JOptionPane.showMessageDialog(null, "Monnaie Supprimé");
+					JOptionPane.showMessageDialog(null, "Livre ajoutée");
 					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Livre existe dèjà");
+					texte_Idclass.setText("");
+					text_Format.setText("");
+					text_Diametre.setText("");
+					text_Empereur.setText("");
+					text_Classement.setText("");
+					textRegne.setText("");
+					textLegende_avers.setText("");
+					textLegende_revers.setText("");
+					textAcquit.setText("");
+					textLieu_date.setText("");
+					textvalNumis.setText("");
+					textRef.setText("");
+					textEtat.setText("");
+					textMatiere.setText("");
 				}
 			}
 		});

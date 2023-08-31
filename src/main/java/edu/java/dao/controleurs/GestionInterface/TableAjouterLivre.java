@@ -124,9 +124,26 @@ public class TableAjouterLivre {
 				String categorie = text_categorie.getText();
 				Livre l = new Livre(idl, num, titre, sousTitre, auteur, editeur,
 						tome, annee, support, rangement, empereurs, collection, categorie);
-				controleurLivre.CtrL_Enregistrer(l);
-				JOptionPane.showMessageDialog(null, "Livre Ajouté");
-				frame.dispose();
+				String reponse = controleurLivre.CtrL_Enregistrer(l);
+				if (reponse != null) {
+					JOptionPane.showMessageDialog(null, "Livre ajoutée");
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Livre existe dèjà");
+					text_idl.setText("");
+					text_num.setText("");
+					text_titre.setText("");
+					text_sousTitre.setText("");
+					text_auteur.setText("");
+					text_editeur.setText("");
+					text_tome.setText("");
+					text_annee.setText("");
+					text_support.setText("");
+					text_rangement.setText("");
+					text_empereurs.setText("");
+					text_collection.setText("");
+					text_categorie.setText("");
+				}
 			}
 		});
 		btnNewButton_Ajouter.setBounds(545, 553, 105, 37);
